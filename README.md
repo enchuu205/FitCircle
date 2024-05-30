@@ -65,25 +65,33 @@ FitCircle - Community-Based Exercise Assistance App
     - Clicking the log out button will log me out of my account and redirect me to landing page which will ask me to log in.
 
 ## Workouts
-- As a logged in user, I am able to create a workout routine using public exercises or custom exercises that I created myself.
-- As a logged in user, I am able to view all my created workouts that I have made.
-- As a logged in user, I am able to edit my own workouts by adding/removing exercises within my workouts.
-- As a logged in user, I am able to delete my own workouts.
+- As a logged in user, I am able to navigate to the My Workouts feature through a button on the navigation bar
+    - On the `/workouts` page:
+        - I am able to create a workout routine using public exercises or custom exercises that I created myself.
+        - I am able to view all my created workouts that I have made.
+        - I am able to edit my own workouts by adding/removing exercises within my workouts.
+        - I am able to delete my own workouts.
 
 ## Public Exercises
-- As a logged in user, I am able to view all public exercises
+- As a logged in user, I am able to navigate to the Exercises feature through a button on the navigation bar
+    - On the `/exercises` page:
+        - I am able to view all public exercises
 
 ## Custom Exercises
-- As a logged in user, I am able to create a custom exercise
-- As a logged in user, I am able to view all my own custom exercises and other custom exercises shared by friends
-- As a logged in user, I am able to edit my own custom exercises
-- As a logged in user, I am able to delete my own custom exercises
+- As a logged in user, I am able to navigate to the Exercises feature through a button on the navigation bar
+    - On the `/exercises` page:
+        - I am able to create a custom exercise
+        - I am able to view all my own custom exercises and other custom exercises shared by friends
+        - I am able to edit my own custom exercises
+        - I am able to delete my own custom exercises
 
 ## Exercise Metrics
-- As a logged in user, I am able to create a exercise metric for any public exercise or custom exercise that I own.
-- As a logged in user, I am able to view my own exercise metrics for any public exercise or custom exercise that I own.
-- As a logged in user, I am able to edit my own exercise metric for any public exercise or custom exercise that I own.
-- As a logged in user, I am able to delete my own exercise metric for any public exercise or custom exercise that I own.
+- As a logged in user, I am able to navigate to the Exercises feature through a button on the navigation bar
+    - On the `/exercises` page:
+        - I am able to create a exercise metric for any public exercise or custom exercise that I own.
+        - I am able to view my own exercise metrics for any public exercise or custom exercise that I own.
+        - I am able to edit my own exercise metric for any public exercise or custom exercise that I own.
+        - I am able to delete my own exercise metric for any public exercise or custom exercise that I own.
 
 ## Friends
 - As a logged in user, I am able to request to add another user as a friend through their email/username.
