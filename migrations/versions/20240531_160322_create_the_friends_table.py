@@ -1,0 +1,46 @@
+"""create the friends table
+
+Revision ID: fbc55d11388b
+Revises: ffdc0a98111c
+Create Date: 2024-05-31 16:03:22.042345
+
+"""
+from alembic import op
+import sqlalchemy as sa
+
+
+# revision identifiers, used by Alembic.
+revision = 'fbc55d11388b'
+down_revision = 'ffdc0a98111c'
+branch_labels = None
+depends_on = None
+
+
+def upgrade():
+    op.create_table(
+        'friends',
+        sa.Column('id',
+                  sa.Integer(),
+                  nullable=False
+                  ),
+        sa.Column('user_1_id',
+                  sa.Integer(),
+                  nullable=False),
+        sa.Column('user_2_id',
+                  sa.Integer(),
+                  nullable=False),
+        sa.Column('pending',
+                  sa.Boolean,
+                  nullable=False),
+         sa.Column('created_at',
+                   sa.DateTime(),
+                   nullable=False),
+        sa.Column('updated_at',
+                  sa.DateTime(),
+                  nullable=False),
+        sa.PrimaryKeyConstraint('id'),
+    )
+
+
+def downgrade():
+    op.drop_table('friends')
