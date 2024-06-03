@@ -1,6 +1,9 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
+from sqlalchemy.orm import relationship
+from datetime import datetime
+from .friends import Friends
 
 
 class User(db.Model, UserMixin):
@@ -10,9 +13,20 @@ class User(db.Model, UserMixin):
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(40), nullable=False, unique=True)
+    first_name = db.Column(db.String(40), nullable=False)
+    last_name = db.Column(db.String(40), nullable=False)
     email = db.Column(db.String(255), nullable=False, unique=True)
+    username = db.Column(db.String(40), nullable=False, unique=True)
+    phone_number = db.Column(db.String(18), nullable=False)
+    city = db.Column(db.String(25), nullable=False)
+    state = db.Column(db.String(25), nullable=False)
     hashed_password = db.Column(db.String(255), nullable=False)
+    profile_picture = db.Column(db.String(255), nullable=True)
+    created_at = db.Column(db.DateTime, default=datetime.now)
+    updated_at = db.Column(db.DateTime, default=datetime.now, onupdate=datetime.now)
+
+    # relationship properties
+    friends = relationship("User", secondary=Friends.__table__, primaryjoin=id==Friends.c.user_1_id,secondaryjoin=id==Friends.user_2_id,  backref='friend_of')
 
     @property
     def password(self):
@@ -28,6 +42,14 @@ class User(db.Model, UserMixin):
     def to_dict(self):
         return {
             'id': self.id,
+            'first_name': self.first_name,
+            'last_name': self.last_name,
+            'email': self.email,
             'username': self.username,
-            'email': self.email
+            'phone_number': self.phone_number,
+            'city': self.city,
+            'state': self.state,
+            'profile_picture': self.profile_picture,
+            'created_at': self.created_at,
+            'updated_at': self.updated_at,
         }
