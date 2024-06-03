@@ -25,4 +25,4 @@ def upgrade():
               )
 
 def downgrade():
-       op.drop_table('workouts_exercises')
+       op.drop_table('workouts_exercises_join_table')

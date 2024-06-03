@@ -13,15 +13,14 @@ class Workouts(db.Model):
     id = db.Column(db.Integer,
                    primary_key=True)
     user_id=db.Column(db.Integer,
-                        db.ForeignKey(add_prefix_for_prod('users.id'),
-                        ondelete='CASCADE'),
+                        db.ForeignKey(add_prefix_for_prod('users.id'), ondelete='CASCADE'),
                         nullable=False)
     title=db.Column(db.String(255),
                     nullable=False)
     duration=db.Column(db.Integer,
                        nullable=False),
     preview_img=db.Column(db.String(255),
-                          nullable=True),
+                          nullable=True)
     private=db.Column(db.Boolean,
                       nullable=False),
     created_at = db.Column(db.DateTime,

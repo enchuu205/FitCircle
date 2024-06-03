@@ -31,9 +31,8 @@ class User(db.Model, UserMixin):
                            secondary=Friends.__table__,
                            primaryjoin=id==Friends.user_1_id,
                            secondaryjoin=id==Friends.user_2_id,
-                           backref='friend_of',
-                           cascade='all, delete-orphan')
-    workouts = relationship('Workouts', back_populates='user')
+                           backref='friend_of')
+    workouts = relationship('Workouts', back_populates='user', cascade='all, delete-orphan')
 
     @property
     def password(self):
@@ -59,4 +58,6 @@ class User(db.Model, UserMixin):
             'profile_picture': self.profile_picture,
             'created_at': self.created_at,
             'updated_at': self.updated_at,
+            'friends': self.friends,
+            'workouts': self.workouts
         }

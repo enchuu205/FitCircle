@@ -4,15 +4,12 @@ import "./Navigation.css";
 
 function Navigation() {
   return (
-    <ul>
-      <li>
-        <NavLink to="/">Home</NavLink>
-      </li>
-
-      <li>
-        <ProfileButton />
-      </li>
-    </ul>
+    <>
+      <NavLink to="/">
+        <img src='fit-circle.img' alt="FitCircle Logo" />
+      </NavLink>
+      <ProfileButton />
+    </>
   );
 }
 

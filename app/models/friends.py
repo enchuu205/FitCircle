@@ -23,3 +23,12 @@ class Friends(db.Model):
                            default=datetime.now)
     updated_at = db.Column(db.DateTime,
                            default=datetime.now, onupdate=datetime.now)
+    def to_dict(self):
+        return{
+            'id': self.id,
+            'user_1_id': self.user_1_id,
+            'user_2_id': self.user_2_id,
+            'pending': self.pending,
+            'created_at': self.created_at,
+            'updated_at': self.updated_at,
+        }

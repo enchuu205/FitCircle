@@ -1,0 +1,21 @@
+#landing-page-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#landing-page-container>* {
+    margin: 10px;
+}
+
+
+.lp-button {
+    background-color: black;
+    color: white;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+#sub-heading {
+    color: gray;
+}
