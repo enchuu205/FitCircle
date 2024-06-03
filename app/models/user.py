@@ -26,7 +26,9 @@ class User(db.Model, UserMixin):
     updated_at = db.Column(db.DateTime, default=datetime.now, onupdate=datetime.now)
 
     # relationship properties
-    friends = relationship("User", secondary=Friends.__table__, primaryjoin=id==Friends.c.user_1_id,secondaryjoin=id==Friends.user_2_id,  backref='friend_of')
+    # many-to-many relationship with reference to self, delete user friends if user is deleted
+    friends = relationship("User", secondary=Friends.__table__, primaryjoin=id==Friends.user_1_id,secondaryjoin=id==Friends.user_2_id,  backref='friend_of', cascade='all, delete-orphan')
+    workouts = relationship('Workouts', back_populates='user')
 
     @property
     def password(self):

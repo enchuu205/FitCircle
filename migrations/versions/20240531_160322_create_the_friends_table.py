@@ -32,12 +32,14 @@ def upgrade():
         sa.Column('pending',
                   sa.Boolean,
                   nullable=False),
-         sa.Column('created_at',
+        sa.Column('created_at',
                    sa.DateTime(),
                    nullable=False),
         sa.Column('updated_at',
                   sa.DateTime(),
                   nullable=False),
+        sa.ForeignKeyConstraint(['user_1_id'], ['users.id'], ondelete='CASCADE'),
+        sa.ForeignKeyConstraint(['user_2_id'], ['users.id'], ondelete='CASCADE'),
         sa.PrimaryKeyConstraint('id'),
     )
 
