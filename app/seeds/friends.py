@@ -29,7 +29,7 @@ def seed_friends():
 # it will reset the primary keys for you as well.
 def undo_friends():
     if environment == "production":
-        db.session.execute(f"TRUNCATE table {SCHEMA}.users RESTART IDENTITY CASCADE;")
+        db.session.execute(f"TRUNCATE table {SCHEMA}.friends RESTART IDENTITY CASCADE;")
     else:
         db.session.execute(text("DELETE FROM friends"))
 

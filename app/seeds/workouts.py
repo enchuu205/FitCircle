@@ -43,7 +43,7 @@ def seed_workouts():
 # it will reset the primary keys for you as well.
 def undo_workouts():
     if environment == "production":
-        db.session.execute(f"TRUNCATE table {SCHEMA}.users RESTART IDENTITY CASCADE;")
+        db.session.execute(f"TRUNCATE table {SCHEMA}.public_exercises RESTART IDENTITY CASCADE;")
     else:
         db.session.execute(text("DELETE FROM public_exercises"))
 

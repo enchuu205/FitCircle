@@ -44,7 +44,7 @@ def seed_workouts_exercises_join():
 # it will reset the primary keys for you as well.
 def undo_workouts_exercises_join():
     if environment == "production":
-        db.session.execute(f"TRUNCATE table {SCHEMA}.users RESTART IDENTITY CASCADE;")
+        db.session.execute(f"TRUNCATE table {SCHEMA}.workouts_exercises_join_table RESTART IDENTITY CASCADE;")
     else:
         db.session.execute(text("DELETE FROM workouts_exercises_join_table"))
 
