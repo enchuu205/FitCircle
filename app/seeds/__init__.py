@@ -36,5 +36,9 @@ def seed():
 # Creates the `flask seed undo` command
 @seed_commands.command('undo')
 def undo():
+    undo_workouts_exercises_join()
+    undo_friends()
+    undo_workouts()
+    undo_public_exercises()
     undo_users()
     # Add other undo functions here

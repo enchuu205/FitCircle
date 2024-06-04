@@ -8,7 +8,9 @@ Create Date: 2024-06-03 02:02:49.032353
 from alembic import op
 import sqlalchemy as sa
 
-
+import os
+environment = os.getenv("FLASK_ENV")
+SCHEMA = os.environ.get("SCHEMA")
 
 # revision identifiers, used by Alembic.
 revision = '0499e0f326e1'
@@ -23,6 +25,8 @@ def upgrade():
               sa.Column('workout_id', sa.Integer(), sa.ForeignKey('workouts.id', ondelete='CASCADE'), primary_key=True),
               sa.Column('public_exercise_id', sa.Integer(), sa.ForeignKey('public_exercises.id', ondelete='CASCADE'), primary_key=True),
               )
+       if environment == "production":
+        op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
 
 def downgrade():
        op.drop_table('workouts_exercises_join_table')

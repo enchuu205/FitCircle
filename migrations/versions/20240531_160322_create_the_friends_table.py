@@ -15,6 +15,9 @@ down_revision = 'ffdc0a98111c'
 branch_labels = None
 depends_on = None
 
+import os
+environment = os.getenv("FLASK_ENV")
+SCHEMA = os.environ.get("SCHEMA")
 
 def upgrade():
     op.create_table(
@@ -42,6 +45,8 @@ def upgrade():
         sa.ForeignKeyConstraint(['user_2_id'], ['users.id'], ondelete='CASCADE'),
         sa.PrimaryKeyConstraint('id'),
     )
+    if environment == "production":
+        op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
 
 
 def downgrade():

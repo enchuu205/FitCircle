@@ -10,3 +10,5 @@ workouts_exercises_join_table = Table(
     db.Column('public_exercise_id', ForeignKey(add_prefix_for_prod('public_exercises.id')), primary_key=True),
     schema=schema
 )
+if environment == "production":
+    workouts_exercises_join_table.schema = SCHEMA
