@@ -18,11 +18,11 @@ class Workouts(db.Model):
     title=db.Column(db.String(255),
                     nullable=False)
     duration=db.Column(db.Integer,
-                       nullable=False),
+                       nullable=False)
     preview_img=db.Column(db.String(255),
                           nullable=True)
     private=db.Column(db.Boolean,
-                      nullable=False),
+                      nullable=False)
     created_at = db.Column(db.DateTime,
                            default=datetime.now)
     updated_at = db.Column(db.DateTime,

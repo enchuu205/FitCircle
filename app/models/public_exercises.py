@@ -17,7 +17,7 @@ class Public_Exercises(db.Model):
                    nullable=False)
     description=db.Column(db.String(255),
                     nullable=False)
-    image=db.Column(db.String(255),
+    img=db.Column(db.String(255),
                     nullable=False)
     created_at = db.Column(db.DateTime,
                            default=datetime.now)
