@@ -27,3 +27,12 @@ class Public_Exercises(db.Model):
     workouts = relationship('Workouts',
                             secondary=workouts_exercises_join_table,
                             back_populates='public_exercises')
+    def to_dict(self):
+        return{
+            'id': self.id,
+            'name': self.name,
+            'description': self.description,
+            'img': self.img,
+            'created_at': self.created_at,
+            'updated_at': self.updated_at,
+        }
