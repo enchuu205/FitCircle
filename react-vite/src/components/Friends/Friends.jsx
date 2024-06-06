@@ -1,6 +1,14 @@
+import { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { getFriendsThunk } from '../../redux/friends'
 import './Friends.css'
 
 function Friends() {
+    const dispatch = useDispatch()
+    useEffect(() => {
+        dispatch(getFriendsThunk())
+    })
+
     return (
         <>
             <div>This is the Friends Page</div>
