@@ -4,6 +4,7 @@ import './Footer.css'
 function Footer() {
     return (
         <>
+            <hr></hr>
             <div>FitCircle</div>
             <div>Designed by Andrew Ly</div>
             <div className='icon' onClick={() => window.open('https://www.linkedin.com/in/andrew-ly204/')}>

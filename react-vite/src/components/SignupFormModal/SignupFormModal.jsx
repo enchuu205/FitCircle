@@ -6,12 +6,30 @@ import "./SignupForm.css";
 
 function SignupFormModal() {
   const dispatch = useDispatch();
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [city, setCity] = useState("");
+  const [state, setState] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errors, setErrors] = useState({});
   const { closeModal } = useModal();
+
+  function setNewSignupUser() {
+    setFirstName('Sample')
+    setLastName('User')
+    setEmail('sample_user@aa.io')
+    setUsername('sample_user')
+    setPhoneNumber('1234567890')
+    setCity('SampleCity')
+    setState('SampleState')
+    setPassword('samplepassword')
+    setConfirmPassword('samplepassword')
+    handleSubmit
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -25,8 +43,13 @@ function SignupFormModal() {
 
     const serverResponse = await dispatch(
       thunkSignup({
+        'first_name': firstName,
+        'last_name': lastName,
         email,
         username,
+        'phone_number': phoneNumber,
+        city,
+        state,
         password,
       })
     );
@@ -39,10 +62,30 @@ function SignupFormModal() {
   };
 
   return (
-    <>
-      <h1>Sign Up</h1>
+    <div >
+      <h1 className='vertical-align'>Sign Up</h1>
       {errors.server && <p>{errors.server}</p>}
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className='vertical-align'>
+        <label>
+          First Name
+          <input
+            type="text"
+            value={firstName}
+            onChange={(e) => setFirstName(e.target.value)}
+            required
+          />
+        </label>
+        {errors.firstName && <p>{errors.firstName}</p>}
+        <label>
+          Last Name
+          <input
+            type="text"
+            value={lastName}
+            onChange={(e) => setLastName(e.target.value)}
+            required
+          />
+        </label>
+        {errors.lastName && <p>{errors.lastName}</p>}
         <label>
           Email
           <input
@@ -64,6 +107,36 @@ function SignupFormModal() {
         </label>
         {errors.username && <p>{errors.username}</p>}
         <label>
+          Phone Number
+          <input
+            type="text"
+            value={phoneNumber}
+            onChange={(e) => setPhoneNumber(e.target.value)}
+            required
+          />
+        </label>
+        {errors.phoneNumber && <p>{errors.phoneNumber}</p>}
+        <label>
+          City
+          <input
+            type="text"
+            value={city}
+            onChange={(e) => setCity(e.target.value)}
+            required
+          />
+        </label>
+        {errors.city && <p>{errors.city}</p>}
+        <label>
+          State
+          <input
+            type="text"
+            value={state}
+            onChange={(e) => setState(e.target.value)}
+            required
+          />
+        </label>
+        {errors.state && <p>{errors.state}</p>}
+        <label>
           Password
           <input
             type="password"
@@ -84,8 +157,9 @@ function SignupFormModal() {
         </label>
         {errors.confirmPassword && <p>{errors.confirmPassword}</p>}
         <button type="submit">Sign Up</button>
+        <button onClick={() => setNewSignupUser()}>Demo User</button>
       </form>
-    </>
+    </div>
   );
 }
 

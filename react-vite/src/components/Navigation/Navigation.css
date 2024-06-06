@@ -3,9 +3,41 @@
   justify-content: space-between;
 }
 
-#navigation-container>* {
-  margin: 10px 30px;
+#nav-text-container {
+  display: flex;
 }
+
+/* #nav-text-container>* {
+  margin: 0px 20px;
+} */
+
+.profile-picture {
+  max-width: 40px;
+  min-width: 40px;
+  margin-left: 20px;
+  border-radius: 20px;
+}
+
+.button:hover {
+  cursor: pointer;
+}
+
+.user-button {
+  background-color: black;
+  color: white;
+  padding: 7px 13px;
+  border-radius: 10px;
+  margin-top: 0px;
+}
+
+.nav-text {
+  margin: 10px 20px;
+}
+
+.nav-text:hover {
+  cursor: pointer;
+}
+
 
 .profile-dropdown {
   position: absolute;

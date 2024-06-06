@@ -57,7 +57,5 @@ class User(db.Model, UserMixin):
             'state': self.state,
             'profile_picture': self.profile_picture,
             'created_at': self.created_at,
-            'updated_at': self.updated_at,
-            'friends': self.friends,
-            'workouts': self.workouts
+            'updated_at': self.updated_at
         }
