@@ -12,14 +12,12 @@ friends_routes=Blueprint('friends', __name__)
 @login_required
 def get_friends():
     accepted_friends = Friends.query.filter(or_(Friends.user_1_id == current_user.id, Friends.user_2_id == current_user.id), Friends.pending == False).all()
-
-    # pending_friends =
+    pending_friends = Friends.query.filter(or_(Friends.user_1_id == current_user.id, Friends.user_2_id == current_user.id), Friends.pending == True).all()
 
     # .options(joinedload(User.friends))
     # accepted_friends = Friends.query.join(User, or_(Friends.user_1_id == User.id, Friends.user_2_id == User.id)).add_columns(User.first_name, User.last_name).filter(or_(Friends.user_1_id == current_user.id, Friends.user_2_id == current_user.id), Friends.pending == False).all()
     # pending_friends = Friends.query.add_columns(User.first_name, User.last_name).filter(or_(Friends.user_1_id == current_user.id, Friends.user_2_id == current_user.id), Friends.pending == True).all()
     # accepted_friends = Friends.query.join(User, or_(Friends.user_1_id == User.id, Friends.user_2_id == User.id)).filter(or_(Friends.user_1_id == current_user.id, Friends.user_2_id == current_user.id), Friends.pending == False).all()
-    pending_friends = Friends.query.filter(or_(Friends.user_1_id == current_user.id, Friends.user_2_id == current_user.id), Friends.pending == True).all()
     # accepted_friends = (db.session.query(User)
     #                     .join(Friends, or_(Friends.user_1_id == User.id, Friends.user_2_id == User.id))
     #                     .filter(or_(Friends.user_1_id == current_user.id, Friends.user_2_id == current_user.id),

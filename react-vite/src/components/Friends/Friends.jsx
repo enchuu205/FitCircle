@@ -20,6 +20,11 @@ function Friends() {
         let year = new Date(updated_at).getFullYear()
         return (<div>{`Friends since ${month} ${year}`}</div>)
     }
+    function friendProfilePicture(friend) {
+        if (friend.sender.id != user.id) {
+            return <img className='profile-picture' src={friend.sender.profile_picture ? 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png' : 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png'} />
+        } else return <img className='profile-picture' src={friend.receiver.profile_picture ? 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png' : 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png'} />
+    }
 
     function friendsMapper(friends, accepted) {
         // console.log(friends)
@@ -29,9 +34,10 @@ function Friends() {
                 if (accepted)
                     return (
                         <div key={id}>
+                            <div>{friendProfilePicture(friend)}</div>
                             <div>{friend.sender.id != user.id ? friend.sender.first_name : friend.receiver.first_name}</div>
                             <div>{monthAndYear(friend.updated_at)}</div>
-                            <div >Remove Friend</div>
+                            <button className='button' onClick={() => alert('will remove the friend')}>Remove Friend</button>
                             <hr></hr>
                         </div>
                     )
@@ -39,9 +45,11 @@ function Friends() {
                     if (friend.sender.id != user.id) {
                         return (
                             <div key={id}>
+                                <div>{friendProfilePicture(friend)}</div>
                                 <div>{friend.sender.id != user.id ? friend.sender.first_name : friend.receiver.first_name}</div>
-                                <div>Accept Friend Request</div>
-                                <div>Decline Friend Request</div>
+                                <div>wants to be your friend!</div>
+                                <button className='button' onClick={() => alert('will accept the friend')}>Accept Friend Request</button>
+                                <button className='button' onClick={() => alert('will deny the friend request')}>Reject Friend Request</button>
                                 <hr></hr>
                             </div>
                         )
@@ -74,8 +82,6 @@ function Friends() {
             <>
                 <div>This is the Friends Page</div>
                 <h1>Your Friends</h1>
-                {/* friends mapper causes a crash because it runs before isloaded is set to true */}
-                <div>{friendsMapper(friends_state.all_friends?.accepted_friends, true)}</div>
                 <div>Add a new friend</div>
                 <form onSubmit={handleFriendRequest} >
                     <input
@@ -85,17 +91,19 @@ function Friends() {
                     ></input>
                     {friends_state.add_friend?.message && friends_state.add_friend?.message}
                 </form >
+                {/* friends mapper causes a crash because it runs before isloaded is set to true */}
+                <div>{friendsMapper(friends_state.all_friends?.accepted_friends, true)}</div>
                 <h1>Your Requests</h1>
                 <div>{friendsMapper(friends_state.all_friends?.pending_friends, false)}</div>
 
                 {/* Friend detail */}
-                <div>
+                {/* <div>
                     <hr></hr>
                     <div>Friend PFP</div>
                     <div>Friend City and State</div>
                     <div># Workouts, # Exercises</div>
                     <button>Remove Friend</button>
-                </div>
+                </div> */}
             </>
         )
     )
