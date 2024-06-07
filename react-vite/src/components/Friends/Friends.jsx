@@ -49,13 +49,13 @@ function Friends() {
             })
             return mappedFriends
         } else {
-            return <div>Let's add a new friend!</div>
+            return <div>Let`&apos;`s add a new friend!</div>
         }
     }
 
     const handleFriendRequest = async (e) => {
         e.preventDefault();
-        const serverResponse = dispatch(addFriendThunk(addFriendInput))
+        dispatch(addFriendThunk(addFriendInput))
         setAddFriendInput('')
         setIsLoaded(false)
     }

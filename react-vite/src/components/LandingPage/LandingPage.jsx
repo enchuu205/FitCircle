@@ -1,7 +1,7 @@
 import './LandingPage.css'
 import { useState } from 'react'
-import OpenModalMenuItem from '../Navigation/OpenModalMenuItem'
-import SignupFormModal from '../SignupFormModal'
+// import OpenModalMenuItem from '../Navigation/OpenModalMenuItem'
+// import SignupFormModal from '../SignupFormModal'
 
 function LandingPage() {
     const [showMenu, setShowMenu] = useState(false);
@@ -11,7 +11,7 @@ function LandingPage() {
         setShowMenu(!showMenu);
     };
 
-    const closeMenu = () => setShowMenu(false);
+    // const closeMenu = () => setShowMenu(false);
 
     return (
         <div id='landing-page-container'>
