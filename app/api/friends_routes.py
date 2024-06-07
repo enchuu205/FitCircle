@@ -11,9 +11,23 @@ friends_routes=Blueprint('friends', __name__)
 @friends_routes.route('')
 @login_required
 def get_friends():
-    # .options(joinedload(User.friends))
     accepted_friends = Friends.query.filter(or_(Friends.user_1_id == current_user.id, Friends.user_2_id == current_user.id), Friends.pending == False).all()
+
+    # pending_friends =
+
+    # .options(joinedload(User.friends))
+    # accepted_friends = Friends.query.join(User, or_(Friends.user_1_id == User.id, Friends.user_2_id == User.id)).add_columns(User.first_name, User.last_name).filter(or_(Friends.user_1_id == current_user.id, Friends.user_2_id == current_user.id), Friends.pending == False).all()
+    # pending_friends = Friends.query.add_columns(User.first_name, User.last_name).filter(or_(Friends.user_1_id == current_user.id, Friends.user_2_id == current_user.id), Friends.pending == True).all()
+    # accepted_friends = Friends.query.join(User, or_(Friends.user_1_id == User.id, Friends.user_2_id == User.id)).filter(or_(Friends.user_1_id == current_user.id, Friends.user_2_id == current_user.id), Friends.pending == False).all()
     pending_friends = Friends.query.filter(or_(Friends.user_1_id == current_user.id, Friends.user_2_id == current_user.id), Friends.pending == True).all()
+    # accepted_friends = (db.session.query(User)
+    #                     .join(Friends, or_(Friends.user_1_id == User.id, Friends.user_2_id == User.id))
+    #                     .filter(or_(Friends.user_1_id == current_user.id, Friends.user_2_id == current_user.id),
+    #                             Friends.pending == False)).all()
+    # pending_friends = (db.session.query(User)
+    #                     .join(Friends, or_(Friends.user_1_id == User.id, Friends.user_2_id == User.id))
+    #                     .filter(or_(Friends.user_1_id == current_user.id, Friends.user_2_id == current_user.id),
+    #                             Friends.pending == True)).all()
     return  jsonify(
         {'accepted_friends':[accepted_friend.to_dict() for accepted_friend in accepted_friends],
          'pending_friends': [pending_friend.to_dict() for pending_friend in pending_friends]
@@ -24,7 +38,6 @@ def get_friends():
 @friends_routes.route('/add-friend/<string:username>', methods=['POST'])
 @login_required
 def add_friend(username):
-    # requires body of username: '<name of added user in input'
     # does not currently check for if the searched user is already a friend/pending friend based on user_1_id or user_2_id
     print(username)
     searched_user = User.query.filter(User.username == username).all()

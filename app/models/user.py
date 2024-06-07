@@ -27,11 +27,13 @@ class User(db.Model, UserMixin):
 
     # relationship properties
     # many-to-many relationship with reference to self, delete user friends if user is deleted
-    friends = relationship("User",
-                           secondary=Friends.__table__,
-                           primaryjoin=id==Friends.user_1_id,
-                           secondaryjoin=id==Friends.user_2_id,
-                           backref='friend_of')
+    friend_1 = db.relationship('Friends', foreign_keys=[Friends.user_1_id],back_populates='user_1')
+    friend_2 = db.relationship('Friends', foreign_keys=[Friends.user_2_id], back_populates='user_2')
+    # friends = relationship("User",
+    #                        secondary=Friends.__table__,
+    #                        primaryjoin=id==Friends.user_1_id,
+    #                        secondaryjoin=id==Friends.user_2_id,
+    #                        backref='friend_of')
     # friends = relationship('Friends',
     #                        primaryjoin='or_(User.id==Friends.user_1_id)'
     #                        )
@@ -60,5 +62,5 @@ class User(db.Model, UserMixin):
             'state': self.state,
             'profile_picture': self.profile_picture,
             'created_at': self.created_at,
-            'updated_at': self.updated_at
+            'updated_at': self.updated_at,
         }
