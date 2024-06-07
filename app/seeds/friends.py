@@ -5,16 +5,16 @@ from sqlalchemy.sql import text
 # Adds a demo user, you can add other users here if you want
 def seed_friends():
     friends = [
-    Friends(user_1_id=1, user_2_id=2, pending=False),
-    Friends(user_1_id=3, user_2_id=1, pending=True),
-    Friends(user_1_id=5, user_2_id=1, pending=False),
-    Friends(user_1_id=7, user_2_id=8, pending=True),
-    Friends(user_1_id=9, user_2_id=10, pending=False),
-    Friends(user_1_id=11, user_2_id=12, pending=True),
-    Friends(user_1_id=13, user_2_id=14, pending=False),
-    Friends(user_1_id=15, user_2_id=16, pending=True),
-    Friends(user_1_id=17, user_2_id=18, pending=False),
-    Friends(user_1_id=19, user_2_id=20, pending=True)
+    Friends(sender_id=1, receiver_id=2, pending=False),
+    Friends(sender_id=3, receiver_id=1, pending=True),
+    Friends(sender_id=5, receiver_id=1, pending=False),
+    Friends(sender_id=7, receiver_id=8, pending=True),
+    Friends(sender_id=9, receiver_id=10, pending=False),
+    Friends(sender_id=11, receiver_id=12, pending=True),
+    Friends(sender_id=13, receiver_id=14, pending=False),
+    Friends(sender_id=15, receiver_id=16, pending=True),
+    Friends(sender_id=17, receiver_id=18, pending=False),
+    Friends(sender_id=19, receiver_id=20, pending=True)
 ]
 
     db.session.add_all(friends)

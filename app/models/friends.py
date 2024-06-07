@@ -9,11 +9,11 @@ class Friends(db.Model):
 
     id = db.Column(db.Integer,
                    primary_key=True)
-    user_1_id=db.Column(db.Integer,
+    sender_id=db.Column(db.Integer,
                         db.ForeignKey(add_prefix_for_prod('users.id'),
                         ondelete='CASCADE'),
                         nullable=False)
-    user_2_id=db.Column(db.Integer,
+    receiver_id=db.Column(db.Integer,
                         db.ForeignKey(add_prefix_for_prod('users.id'),
                         ondelete='CASCADE'),
                         nullable=False)
@@ -24,13 +24,13 @@ class Friends(db.Model):
     updated_at = db.Column(db.DateTime,
                            default=datetime.now, onupdate=datetime.now)
 
-    user_1 = db.relationship("User", foreign_keys=[user_1_id], back_populates='friend_1')
-    user_2 = db.relationship("User", foreign_keys=[user_2_id], back_populates='friend_2')
+    user_1 = db.relationship("User", foreign_keys=[sender_id], back_populates='friend_1')
+    user_2 = db.relationship("User", foreign_keys=[receiver_id], back_populates='friend_2')
     def to_dict(self):
         return{
             'id': self.id,
-            'user_1_id': self.user_1_id,
-            'user_2_id': self.user_2_id,
+            'sender_id': self.sender_id,
+            'receiver_id': self.receiver_id,
             'pending': self.pending,
             'created_at': self.created_at,
             'updated_at': self.updated_at,

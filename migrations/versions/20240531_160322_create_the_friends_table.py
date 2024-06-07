@@ -26,10 +26,10 @@ def upgrade():
                   sa.Integer(),
                   nullable=False
                   ),
-        sa.Column('user_1_id',
+        sa.Column('sender_id',
                   sa.Integer(),
                   nullable=False),
-        sa.Column('user_2_id',
+        sa.Column('receiver_id',
                   sa.Integer(),
                   nullable=False),
         sa.Column('pending',
@@ -41,8 +41,8 @@ def upgrade():
         sa.Column('updated_at',
                   sa.DateTime(),
                   nullable=False),
-        sa.ForeignKeyConstraint(['user_1_id'], ['users.id'], ondelete='CASCADE'),
-        sa.ForeignKeyConstraint(['user_2_id'], ['users.id'], ondelete='CASCADE'),
+        sa.ForeignKeyConstraint(['sender_id'], ['users.id'], ondelete='CASCADE'),
+        sa.ForeignKeyConstraint(['receiver_id'], ['users.id'], ondelete='CASCADE'),
         sa.PrimaryKeyConstraint('id'),
     )
     if environment == "production":

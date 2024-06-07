@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { getFriendsThunk, addFriendThunk } from '../../redux/friends'
+import { getFriendsThunk, addFriendThunk, acceptFriendRequestThunk, deleteFriendThunk } from '../../redux/friends'
 import { useState } from 'react'
 import './Friends.css'
 
@@ -37,7 +37,7 @@ function Friends() {
                             <div>{friendProfilePicture(friend)}</div>
                             <div>{friend.sender.id != user.id ? friend.sender.first_name : friend.receiver.first_name}</div>
                             <div>{monthAndYear(friend.updated_at)}</div>
-                            <button className='button' onClick={() => alert('will remove the friend')}>Remove Friend</button>
+                            <button className='button' onClick={(e) => deleteFriend(e, friend.sender.id != user.id ? friend.sender.id : friend.receiver.id)}>Remove Friend</button>
                             <hr></hr>
                         </div>
                     )
@@ -48,7 +48,7 @@ function Friends() {
                                 <div>{friendProfilePicture(friend)}</div>
                                 <div>{friend.sender.id != user.id ? friend.sender.first_name : friend.receiver.first_name}</div>
                                 <div>wants to be your friend!</div>
-                                <button className='button' onClick={() => alert('will accept the friend')}>Accept Friend Request</button>
+                                <button className='button' onClick={(e) => acceptFriendRequest(e, friend.sender.id)}>Accept Friend Request</button>
                                 <button className='button' onClick={() => alert('will deny the friend request')}>Reject Friend Request</button>
                                 <hr></hr>
                             </div>
@@ -65,6 +65,18 @@ function Friends() {
         e.preventDefault();
         dispatch(addFriendThunk(addFriendInput))
         setAddFriendInput('')
+        setIsLoaded(false)
+    }
+
+    const acceptFriendRequest = async (e, sender_id) => {
+        e.preventDefault();
+        dispatch(acceptFriendRequestThunk(sender_id))
+        setIsLoaded(false)
+    }
+
+    const deleteFriend = async (e, friend_id) => {
+        e.preventDefault();
+        dispatch(deleteFriendThunk(friend_id))
         setIsLoaded(false)
     }
 

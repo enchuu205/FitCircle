@@ -27,15 +27,15 @@ class User(db.Model, UserMixin):
 
     # relationship properties
     # many-to-many relationship with reference to self, delete user friends if user is deleted
-    friend_1 = db.relationship('Friends', foreign_keys=[Friends.user_1_id],back_populates='user_1')
-    friend_2 = db.relationship('Friends', foreign_keys=[Friends.user_2_id], back_populates='user_2')
+    friend_1 = db.relationship('Friends', foreign_keys=[Friends.sender_id],back_populates='user_1')
+    friend_2 = db.relationship('Friends', foreign_keys=[Friends.receiver_id], back_populates='user_2')
     # friends = relationship("User",
     #                        secondary=Friends.__table__,
-    #                        primaryjoin=id==Friends.user_1_id,
-    #                        secondaryjoin=id==Friends.user_2_id,
+    #                        primaryjoin=id==Friends.sender_id,
+    #                        secondaryjoin=id==Friends.receiver_id,
     #                        backref='friend_of')
     # friends = relationship('Friends',
-    #                        primaryjoin='or_(User.id==Friends.user_1_id)'
+    #                        primaryjoin='or_(User.id==Friends.sender_id)'
     #                        )
     workouts = relationship('Workouts', back_populates='user', cascade='all, delete-orphan')
 
