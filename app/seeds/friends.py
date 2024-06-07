@@ -6,8 +6,8 @@ from sqlalchemy.sql import text
 def seed_friends():
     friends = [
     Friends(user_1_id=1, user_2_id=2, pending=False),
-    Friends(user_1_id=3, user_2_id=4, pending=True),
-    Friends(user_1_id=5, user_2_id=6, pending=False),
+    Friends(user_1_id=3, user_2_id=1, pending=True),
+    Friends(user_1_id=5, user_2_id=1, pending=False),
     Friends(user_1_id=7, user_2_id=8, pending=True),
     Friends(user_1_id=9, user_2_id=10, pending=False),
     Friends(user_1_id=11, user_2_id=12, pending=True),

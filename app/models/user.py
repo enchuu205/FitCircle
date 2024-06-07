@@ -32,6 +32,9 @@ class User(db.Model, UserMixin):
                            primaryjoin=id==Friends.user_1_id,
                            secondaryjoin=id==Friends.user_2_id,
                            backref='friend_of')
+    # friends = relationship('Friends',
+    #                        primaryjoin='or_(User.id==Friends.user_1_id)'
+    #                        )
     workouts = relationship('Workouts', back_populates='user', cascade='all, delete-orphan')
 
     @property
