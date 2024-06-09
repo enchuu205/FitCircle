@@ -1,0 +1,24 @@
+.homepage-container {
+    margin: 10px;
+}
+
+.all-workouts-container {
+    display: flex;
+
+}
+
+.workout-container {
+    border: black solid 1px;
+    margin-bottom: 10px;
+    width: fit-content;
+    margin-right: 15px;
+}
+
+.workout-container:hover {
+    cursor: pointer;
+    box-shadow: black 0px 0px 10px;
+}
+
+.workout-preview-image {
+    width: 400px;
+}

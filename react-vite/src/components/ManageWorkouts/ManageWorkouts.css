@@ -1,0 +1,11 @@
+.all-workouts-container {
+    display: flex;
+
+}
+
+.workout-container {
+    border: black solid 1px;
+    margin-bottom: 10px;
+    width: fit-content;
+    margin-right: 15px;
+}

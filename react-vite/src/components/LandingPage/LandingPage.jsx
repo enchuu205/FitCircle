@@ -1,9 +1,14 @@
 import './LandingPage.css'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { useSelector } from 'react-redux'
+import { useNavigate } from "react-router-dom";
 import OpenModalMenuItem from '../Navigation/OpenModalMenuItem'
 import SignupFormModal from '../SignupFormModal'
 
 function LandingPage() {
+    const navigate = useNavigate()
+    const user = useSelector((state) => state.session.user)
+
     const [showMenu, setShowMenu] = useState(false);
 
     const toggleMenu = (e) => {
@@ -12,6 +17,12 @@ function LandingPage() {
     };
 
     const closeMenu = () => setShowMenu(false);
+
+    // prevents user from pressing back and then going to the landing page
+    useEffect(() => {
+        if (user != null) navigate('/home')
+    })
+
 
     return (
         <div id='landing-page-container'>
