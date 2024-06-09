@@ -1,6 +1,11 @@
+#logo {
+  max-width: 65px;
+}
+
 #navigation-container {
   display: flex;
   justify-content: space-between;
+  /* background-color: #97c4e2; */
 }
 
 #nav-text-container {
@@ -12,8 +17,9 @@
 } */
 
 .profile-picture {
-  max-width: 40px;
-  min-width: 40px;
+  width: 40px;
+  height: 40px;
+
   margin-left: 20px;
   border-radius: 20px;
 }
@@ -22,11 +28,21 @@
   cursor: pointer;
 }
 
+.login-button {
+  color: white;
+  background-color: black;
+  padding-top: 10px;
+  padding: 10px;
+  height: 20px;
+  border-radius: 10px;
+}
+
 .user-button {
   background-color: black;
   color: white;
   padding: 7px 13px;
   border-radius: 10px;
+  height: 40px;
   margin-top: 0px;
 }
 
@@ -38,7 +54,16 @@
   cursor: pointer;
 }
 
-
 .profile-dropdown {
   position: absolute;
+  margin-right: 20px;
+  padding: 10px;
+  top: 60px;
+  right: 0px;
+
+  border: black solid 1px;
+}
+
+.profile-dropdown>* {
+  margin-bottom: 5px;
 }

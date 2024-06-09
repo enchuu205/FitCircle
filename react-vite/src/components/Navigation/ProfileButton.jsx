@@ -45,34 +45,25 @@ function ProfileButton() {
 
   return (
     <>
-      {!user && <button onClick={toggleMenu} className="user-button">Login</button>}
-      {user && <button className="user-button button" onClick={() => navigate('/create-workout')}>Create a Workout</button>}
+      {!user &&
+        <OpenModalMenuItem
+          itemText="Log In"
+          onItemClick={closeMenu}
+          modalComponent={<LoginFormModal />}
+        />}
       {user && <img onClick={toggleMenu} className='profile-picture button' src={user.profile_picture1 ? user.profile_picture : 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png'} />}
       {showMenu && (
-        <ul className={"profile-dropdown"} ref={ulRef}>
-          {user ? (
+        <div className={"profile-dropdown"} ref={ulRef}>
+          {user && (
             <>
-              <li>{user.username}</li>
-              <li>{user.email}</li>
-              <li>
-                <button onClick={logout}>Log Out</button>
-              </li>
-            </>
-          ) : (
-            <>
-              <OpenModalMenuItem
-                itemText="Log In"
-                onItemClick={closeMenu}
-                modalComponent={<LoginFormModal />}
-              />
-              <OpenModalMenuItem
-                itemText="Sign Up"
-                onItemClick={closeMenu}
-                modalComponent={<SignupFormModal />}
-              />
+              <div>Hey {user.username}!</div>
+              <div onClick={() => alert('Function not yet implemented')} className="button">See profile</div>
+              <div>
+                <button onClick={logout} className="button">Log Out</button>
+              </div>
             </>
           )}
-        </ul>
+        </div>
       )}
     </>
   );

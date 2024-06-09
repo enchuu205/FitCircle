@@ -7,131 +7,131 @@ def seed_users():
     users = [
     User(first_name='Demo', last_name='User', email='demo@aa.io', username='demo_user',
          phone_number='123-456-7890', city='New York', state='NY',
-         password='password0', profile_picture='profile1.jpg'),
+         password='password0', profile_picture='https://res.cloudinary.com/dztk9g8ji/image/upload/v1717803316/59992906_2507752779249444_8109969801943711744_n_critjx.jpg'),
     User(
         first_name='John', last_name='Doe', email='john.doe@example.com', username='johndoe',
         phone_number='123-456-7890', city='New York', state='NY',
-        password='password1', profile_picture='profile1.jpg'
+        password='password1', profile_picture='https://res.cloudinary.com/dztk9g8ji/image/upload/v1717803316/59992906_2507752779249444_8109969801943711744_n_critjx.jpg'
     ),
     User(
         first_name='Jane', last_name='Smith', email='jane.smith@example.com', username='janesmith',
         phone_number='234-567-8901', city='Los Angeles', state='CA',
-        password='password2', profile_picture='profile2.jpg'
+        password='password2', profile_picture='https://res.cloudinary.com/dztk9g8ji/image/upload/v1717803316/59992906_2507752779249444_8109969801943711744_n_critjx.jpg'
     ),
     User(
         first_name='Alice', last_name='Johnson', email='alice.johnson@example.com', username='alicej',
         phone_number='345-678-9012', city='Chicago', state='IL',
-        password='password3', profile_picture='profile3.jpg'
+        password='password3', profile_picture='https://res.cloudinary.com/dztk9g8ji/image/upload/v1717803316/59992906_2507752779249444_8109969801943711744_n_critjx.jpg'
     ),
     User(
         first_name='Bob', last_name='Brown', email='bob.brown@example.com', username='bobb',
         phone_number='456-789-0123', city='Houston', state='TX',
-        password='password4', profile_picture='profile4.jpg'
+        password='password4', profile_picture='https://res.cloudinary.com/dztk9g8ji/image/upload/v1717803316/59992906_2507752779249444_8109969801943711744_n_critjx.jpg'
     ),
     User(
         first_name='Charlie', last_name='Davis', email='charlie.davis@example.com', username='charlied',
         phone_number='567-890-1234', city='Phoenix', state='AZ',
-        password='password5', profile_picture='profile5.jpg'
+        password='password5', profile_picture='https://res.cloudinary.com/dztk9g8ji/image/upload/v1717803316/59992906_2507752779249444_8109969801943711744_n_critjx.jpg'
     ),
     User(
         first_name='David', last_name='Miller', email='david.miller@example.com', username='davidm',
         phone_number='678-901-2345', city='Philadelphia', state='PA',
-        password='password6', profile_picture='profile6.jpg'
+        password='password6', profile_picture='https://res.cloudinary.com/dztk9g8ji/image/upload/v1717803316/59992906_2507752779249444_8109969801943711744_n_critjx.jpg'
     ),
     User(
         first_name='Eve', last_name='Wilson', email='eve.wilson@example.com', username='evew',
         phone_number='789-012-3456', city='San Antonio', state='TX',
-        password='password7', profile_picture='profile7.jpg'
+        password='password7', profile_picture='https://res.cloudinary.com/dztk9g8ji/image/upload/v1717803316/59992906_2507752779249444_8109969801943711744_n_critjx.jpg'
     ),
     User(
         first_name='Frank', last_name='Moore', email='frank.moore@example.com', username='frankm',
         phone_number='890-123-4567', city='San Diego', state='CA',
-        password='password8', profile_picture='profile8.jpg'
+        password='password8', profile_picture='https://res.cloudinary.com/dztk9g8ji/image/upload/v1717803316/59992906_2507752779249444_8109969801943711744_n_critjx.jpg'
     ),
     User(
         first_name='Grace', last_name='Taylor', email='grace.taylor@example.com', username='gracet',
         phone_number='901-234-5678', city='Dallas', state='TX',
-        password='password9', profile_picture='profile9.jpg'
+        password='password9', profile_picture='https://res.cloudinary.com/dztk9g8ji/image/upload/v1717803316/59992906_2507752779249444_8109969801943711744_n_critjx.jpg'
     ),
     User(
         first_name='Henry', last_name='Anderson', email='henry.anderson@example.com', username='henrya',
         phone_number='012-345-6789', city='San Jose', state='CA',
-        password='password10', profile_picture='profile10.jpg'
+        password='password10', profile_picture='https://res.cloudinary.com/dztk9g8ji/image/upload/v1717803316/59992906_2507752779249444_8109969801943711744_n_critjx.jpg'
     ),
     User(
         first_name='Ivy', last_name='Thomas', email='ivy.thomas@example.com', username='ivyt',
         phone_number='123-456-7891', city='Austin', state='TX',
-        password='password11', profile_picture='profile11.jpg'
+        password='password11', profile_picture='https://res.cloudinary.com/dztk9g8ji/image/upload/v1717803316/59992906_2507752779249444_8109969801943711744_n_critjx.jpg'
     ),
     User(
         first_name='Jack', last_name='Jackson', email='jack.jackson@example.com', username='jackj',
         phone_number='234-567-8902', city='Jacksonville', state='FL',
-        password='password12', profile_picture='profile12.jpg'
+        password='password12', profile_picture='https://res.cloudinary.com/dztk9g8ji/image/upload/v1717803316/59992906_2507752779249444_8109969801943711744_n_critjx.jpg'
     ),
     User(
         first_name='Karen', last_name='White', email='karen.white@example.com', username='karenw',
         phone_number='345-678-9013', city='Fort Worth', state='TX',
-        password='password13', profile_picture='profile13.jpg'
+        password='password13', profile_picture='https://res.cloudinary.com/dztk9g8ji/image/upload/v1717803316/59992906_2507752779249444_8109969801943711744_n_critjx.jpg'
     ),
     User(
         first_name='Leo', last_name='Harris', email='leo.harris@example.com', username='leoh',
         phone_number='456-789-0124', city='Columbus', state='OH',
-        password='password14', profile_picture='profile14.jpg'
+        password='password14', profile_picture='https://res.cloudinary.com/dztk9g8ji/image/upload/v1717803316/59992906_2507752779249444_8109969801943711744_n_critjx.jpg'
     ),
     User(
         first_name='Mia', last_name='Martin', email='mia.martin@example.com', username='miam',
         phone_number='567-890-1235', city='Charlotte', state='NC',
-        password='password15', profile_picture='profile15.jpg'
+        password='password15', profile_picture='https://res.cloudinary.com/dztk9g8ji/image/upload/v1717803316/59992906_2507752779249444_8109969801943711744_n_critjx.jpg'
     ),
     User(
         first_name='Noah', last_name='Lee', email='noah.lee@example.com', username='noahl',
         phone_number='678-901-2346', city='San Francisco', state='CA',
-        password='password16', profile_picture='profile16.jpg'
+        password='password16', profile_picture='https://res.cloudinary.com/dztk9g8ji/image/upload/v1717803316/59992906_2507752779249444_8109969801943711744_n_critjx.jpg'
     ),
     User(
         first_name='Olivia', last_name='Clark', email='olivia.clark@example.com', username='oliviac',
         phone_number='789-012-3457', city='Indianapolis', state='IN',
-        password='password17', profile_picture='profile17.jpg'
+        password='password17', profile_picture='https://res.cloudinary.com/dztk9g8ji/image/upload/v1717803316/59992906_2507752779249444_8109969801943711744_n_critjx.jpg'
     ),
     User(
         first_name='Paul', last_name='Lewis', email='paul.lewis@example.com', username='paull',
         phone_number='890-123-4568', city='Seattle', state='WA',
-        password='password18', profile_picture='profile18.jpg'
+        password='password18', profile_picture='https://res.cloudinary.com/dztk9g8ji/image/upload/v1717803316/59992906_2507752779249444_8109969801943711744_n_critjx.jpg'
     ),
     User(
         first_name='Quinn', last_name='Walker', email='quinn.walker@example.com', username='quinnw',
         phone_number='901-234-5679', city='Denver', state='CO',
-        password='password19', profile_picture='profile19.jpg'
+        password='password19', profile_picture='https://res.cloudinary.com/dztk9g8ji/image/upload/v1717803316/59992906_2507752779249444_8109969801943711744_n_critjx.jpg'
     ),
     User(
         first_name='Ryan', last_name='Hall', email='ryan.hall@example.com', username='ryanh',
         phone_number='012-345-6780', city='Washington', state='DC',
-        password='password20', profile_picture='profile20.jpg'
+        password='password20', profile_picture='https://res.cloudinary.com/dztk9g8ji/image/upload/v1717803316/59992906_2507752779249444_8109969801943711744_n_critjx.jpg'
     ),
     User(
         first_name='Sophia', last_name='Allen', email='sophia.allen@example.com', username='sophiaa',
         phone_number='123-456-7892', city='Boston', state='MA',
-        password='password21', profile_picture='profile21.jpg'
+        password='password21', profile_picture='https://res.cloudinary.com/dztk9g8ji/image/upload/v1717803316/59992906_2507752779249444_8109969801943711744_n_critjx.jpg'
     ),
     User(
         first_name='Tom', last_name='Young', email='tom.young@example.com', username='tomy',
         phone_number='234-567-8903', city='El Paso', state='TX',
-        password='password22', profile_picture='profile22.jpg'
+        password='password22', profile_picture='https://res.cloudinary.com/dztk9g8ji/image/upload/v1717803316/59992906_2507752779249444_8109969801943711744_n_critjx.jpg'
     ),
     User(
         first_name='Uma', last_name='King', email='uma.king@example.com', username='umak',
         phone_number='345-678-9014', city='Detroit', state='MI',
-        password='password23', profile_picture='profile23.jpg'
+        password='password23', profile_picture='https://res.cloudinary.com/dztk9g8ji/image/upload/v1717803316/59992906_2507752779249444_8109969801943711744_n_critjx.jpg'
     ),
     User(
         first_name='Victor', last_name='Wright', email='victor.wright@example.com', username='victorw',
         phone_number='456-789-0125', city='Nashville', state='TN',
-        password='password24', profile_picture='profile24.jpg'
+        password='password24', profile_picture='https://res.cloudinary.com/dztk9g8ji/image/upload/v1717803316/59992906_2507752779249444_8109969801943711744_n_critjx.jpg'
     ),
     User(
         first_name='Wendy', last_name='Lopez', email='wendy.lopez@example.com', username='wendyl',
         phone_number='567-890-1236', city='Oklahoma City', state='OK',
-        password='password25', profile_picture='profile25.jpg'
+        password='password25', profile_picture='https://res.cloudinary.com/dztk9g8ji/image/upload/v1717803316/59992906_2507752779249444_8109969801943711744_n_critjx.jpg'
     )
 ]
 

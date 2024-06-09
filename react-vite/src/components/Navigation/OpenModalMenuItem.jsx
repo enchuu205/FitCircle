@@ -13,9 +13,12 @@ function OpenModalMenuItem({
     setModalContent(modalComponent);
     if (typeof onItemClick === "function") onItemClick();
   };
+  if (itemText === "Don't have an account? Sign Up!") {
+    return (<div onClick={onClick}>{itemText}</div>)
+  }
 
   return (
-    <li onClick={onClick}>{itemText}</li>
+    <div onClick={onClick} className="login-button button">{itemText}</div>
   );
 }
 

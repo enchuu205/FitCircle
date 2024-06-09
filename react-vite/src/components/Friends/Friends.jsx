@@ -22,8 +22,8 @@ function Friends() {
     }
     function friendProfilePicture(friend) {
         if (friend.sender.id != user.id) {
-            return <img className='profile-picture' src={friend.sender.profile_picture ? 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png' : 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png'} />
-        } else return <img className='profile-picture' src={friend.receiver.profile_picture ? 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png' : 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png'} />
+            return <img className='profile-picture' src={friend.sender.profile_picture ? friend.sender.profile_picture : 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png'} />
+        } else return <img className='profile-picture' src={friend.receiver.profile_picture ? friend.receiver.profile_picture : 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png'} />
     }
 
     function friendsMapper(friends, accepted) {
@@ -92,7 +92,6 @@ function Friends() {
     return (
         isLoaded && (
             <>
-                <div>This is the Friends Page</div>
                 <h1>Your Friends</h1>
                 <div>Add a new friend</div>
                 <form onSubmit={handleFriendRequest} >

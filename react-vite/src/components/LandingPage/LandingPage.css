@@ -4,6 +4,10 @@
     align-items: center;
 }
 
+#lp-logo {
+    width: 250px;
+}
+
 #landing-page-container>* {
     margin: 10px;
 }

@@ -3,7 +3,10 @@ import { thunkLogin } from "../../redux/session";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { useNavigate } from "react-router-dom";
+import { useRef } from "react";
 import "./LoginForm.css";
+import SignupFormModal from "../SignupFormModal";
+import OpenModalMenuItem from "../Navigation/OpenModalMenuItem";
 
 function LoginFormModal() {
   const dispatch = useDispatch();
@@ -12,6 +15,13 @@ function LoginFormModal() {
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({});
   const { closeModal } = useModal();
+  const ulRef = useRef();
+
+  const closeMenu = (e) => {
+    if (ulRef.current && !ulRef.current.contains(e.target)) {
+      setShowMenu(false);
+    }
+  };
 
   function logInDemoUser() {
     setEmail('demo@aa.io')
@@ -62,6 +72,11 @@ function LoginFormModal() {
         {errors.password && <p>{errors.password}</p>}
         <button type="submit">Log In</button>
         <button onClick={() => logInDemoUser()}>Demo User</button>
+        <OpenModalMenuItem
+          itemText="Don't have an account? Sign Up!"
+          onItemClick={closeMenu}
+          modalComponent={<SignupFormModal />}
+        />
       </form>
     </>
   );

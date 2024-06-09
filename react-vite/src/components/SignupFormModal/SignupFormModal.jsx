@@ -1,11 +1,14 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { thunkSignup } from "../../redux/session";
+import { useNavigate } from "react-router-dom";
 import "./SignupForm.css";
 
 function SignupFormModal() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const ulRef = useRef();
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -30,6 +33,12 @@ function SignupFormModal() {
     setConfirmPassword('samplepassword')
     handleSubmit
   }
+
+  const closeMenu = (e) => {
+    if (ulRef.current && !ulRef.current.contains(e.target)) {
+      setShowMenu(false);
+    }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -58,6 +67,7 @@ function SignupFormModal() {
       setErrors(serverResponse);
     } else {
       closeModal();
+      navigate('/home');
     }
   };
 
@@ -157,7 +167,7 @@ function SignupFormModal() {
         </label>
         {errors.confirmPassword && <p>{errors.confirmPassword}</p>}
         <button type="submit">Sign Up</button>
-        <button onClick={() => setNewSignupUser()}>Demo User</button>
+        <button onClick={() => setNewSignupUser()}>Sample Sign Up User</button>
       </form>
     </div>
   );
