@@ -6,6 +6,7 @@ import HomePage from '../components/HomePage';
 import Friends from '../components/Friends';
 import ManageWorkouts from '../components/ManageWorkouts';
 import CreateWorkout from '../components/CreateWorkout/CreateWorkout';
+import WorkoutDetails from '../components/WorkoutDetails';
 import Layout from './Layout';
 
 export const router = createBrowserRouter([
@@ -25,12 +26,16 @@ export const router = createBrowserRouter([
         element: <Friends />
       },
       {
-        path: '/manage-workouts',
+        path: '/workouts/manage-workouts',
         element: <ManageWorkouts />
       },
       {
-        path: '/create-workout',
+        path: '/workouts/create-workout',
         element: <CreateWorkout />
+      },
+      {
+        path: '/workouts/:id',
+        element: <WorkoutDetails />
       }
     ],
   },

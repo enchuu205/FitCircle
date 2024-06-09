@@ -18,3 +18,22 @@ def get_all_workouts():
             "current_user_workouts": [user_workout.to_dict() for user_workout in current_user_workouts],
             "public_workouts": [public_workout.to_dict() for public_workout in public_workouts]
         })
+
+@workouts_routes.route('/<int:id>')
+@login_required
+def get_workout_details(id):
+    workout = Workouts.query.filter(Workouts.id == id).one()
+    return jsonify(
+        {
+            'workout_detail': workout.to_dict()
+        }
+    )
+
+
+@workouts_routes.route('/<int:id>/delete', methods=['DELETE'])
+@login_required
+def delete_workout(id):
+    workout = Workouts.query.filter(Workouts.id == id).one()
+    db.session.delete(workout)
+    db.session.commit()
+    return {'message': 'Successfully removed workout'}

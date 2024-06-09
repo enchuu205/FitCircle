@@ -27,9 +27,10 @@ class Workouts(db.Model):
                            default=datetime.now)
     updated_at = db.Column(db.DateTime,
                            default=datetime.now, onupdate=datetime.now)
+
     # relationships
-    user = relationship('User', back_populates='workouts')
-    public_exercises = relationship('Public_Exercises',
+    user = db.relationship('User', back_populates='workouts')
+    public_exercises = db.relationship('Public_Exercises',
                             secondary=workouts_exercises_join_table,
                             back_populates='workouts')
     def to_dict(self):
@@ -42,4 +43,8 @@ class Workouts(db.Model):
             'private': self.private,
             'created_at': self.created_at,
             'updated_at': self.updated_at,
+            'user': self.user.to_dict(),
+            'public_exercises': [
+                    public_exercise.to_dict() for public_exercise in self.public_exercises
+                ]
         }

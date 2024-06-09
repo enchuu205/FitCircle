@@ -27,7 +27,7 @@ function HomePage() {
                 <div className='workout-container' key={id} onClick={() => navigate(`/workouts/${workout.id}`)}>
                     <img className='workout-preview-image' src={workout.preview_img ? 'https://res.cloudinary.com/dztk9g8ji/image/upload/v1717899260/5-chest-workouts-for-mass-header-v2-830x467_yxfvwf.jpg' : 'https://res.cloudinary.com/dztk9g8ji/image/upload/v1717899260/5-chest-workouts-for-mass-header-v2-830x467_yxfvwf.jpg'} />
                     <div>{workout.title}</div>
-                    {from_others && <div>Created by {workout.user_id}</div>}
+                    {from_others && <div>Created by {workout.user.first_name}</div>}
                     <div>Duration: {workout.duration} minutes</div>
                 </div>
             )
@@ -42,6 +42,7 @@ function HomePage() {
                 <div>Ready to start your next workout?</div>
                 <h2>Your workouts</h2>
                 <div className='all-workouts-container'>{workoutsMapper(workouts_state.current_user_workouts, false)}</div>
+                {workouts_state.current_user_workouts?.length == 0 && <div>You do not own any workouts </div>}
                 <h2>Find a workout</h2>
                 <div className='all-workouts-container'>{workoutsMapper(workouts_state.public_workouts, true)}</div>
             </div>)

@@ -13,10 +13,10 @@ function Navigation() {
         <img id='logo' src='https://res.cloudinary.com/dztk9g8ji/image/upload/v1717806130/Untitled_design_njfhcq.png' alt="FitCircle Logo" />
       </NavLink>
       <div id='nav-text-container'>
-        {user && <div className="nav-text" onClick={() => navigate('/manage-workouts')}>Manage Workouts</div>}
+        {user && <div className="nav-text" onClick={() => navigate('/workouts/manage-workouts')}>Manage Workouts</div>}
         {user && <div className="nav-text" onClick={() => alert('Function not yet implemented')}>Exercises</div>}
         {user && <div className="nav-text" onClick={() => navigate('/friends')}>Friends</div>}
-        {user && <button className="user-button button" onClick={() => navigate('/create-workout')}>Create a Workout</button>}
+        {user && <button className="user-button button" onClick={() => navigate('/workouts/create-workout')}>Create a Workout</button>}
         <ProfileButton user={user} />
       </div>
     </div>

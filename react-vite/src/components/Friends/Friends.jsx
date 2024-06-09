@@ -57,7 +57,7 @@ function Friends() {
             })
             return mappedFriends
         } else {
-            return <div>Let`&apos;`s add a new friend!</div>
+            return <div>Let&apos;s add a new friend!</div>
         }
     }
 

@@ -1,3 +1,10 @@
 .icon:hover {
     cursor: pointer;
 }
+
+.footer-container {
+    /* position: absolute; */
+    bottom: 0px;
+    width: 100%;
+    background-color: white;
+}

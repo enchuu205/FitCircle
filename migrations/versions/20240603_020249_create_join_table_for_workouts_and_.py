@@ -24,6 +24,9 @@ def upgrade():
               'workouts_exercises_join_table',
               sa.Column('workout_id', sa.Integer(), sa.ForeignKey('workouts.id', ondelete='CASCADE'), primary_key=True),
               sa.Column('public_exercise_id', sa.Integer(), sa.ForeignKey('public_exercises.id', ondelete='CASCADE'), primary_key=True),
+              sa.Column('sets', sa.Integer()),
+              sa.Column('reps', sa.Integer()),
+              sa.Column('rest_seconds', sa.Integer()),
               )
        if environment == "production":
         op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")

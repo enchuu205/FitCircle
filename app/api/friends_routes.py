@@ -62,7 +62,7 @@ def accept_friend(sender_id):
     return {'message': 'Accepted friend request!'}
 
 # DELETE FRIEND
-@friends_routes.route('/delete-friend/<int:friend_id>', methods=['DELETE'])
+@friends_routes.route('/<int:friend_id>/delete', methods=['DELETE'])
 @login_required
 def delete_friend(friend_id):
     friend = Friends.query.filter(or_(and_(Friends.sender_id == friend_id, Friends.receiver_id == current_user.id), and_(Friends.sender_id == current_user.id, Friends.receiver_id == friend_id))).first()

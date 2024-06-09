@@ -76,7 +76,7 @@ export const acceptFriendRequestThunk = (sender_id) => async dispatch => {
 }
 
 export const deleteFriendThunk = (friend_id) => async dispatch => {
-    const response = await fetch(`/api/friends/delete-friend/${friend_id}`, {
+    const response = await fetch(`/api/friends/${friend_id}/delete`, {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json'
