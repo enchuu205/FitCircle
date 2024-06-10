@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import OpenModalButton from "../OpenModalButton";
-import DeleteFriendModal from '../DeleteFriendModal';
+// import OpenModalButton from "../OpenModalButton";
+// import DeleteFriendModal from '../DeleteFriendModal';
 import { getFriendsThunk, addFriendThunk, acceptFriendRequestThunk, deleteFriendThunk } from '../../redux/friends'
 
 import { IoIosCheckmarkCircle } from "react-icons/io";

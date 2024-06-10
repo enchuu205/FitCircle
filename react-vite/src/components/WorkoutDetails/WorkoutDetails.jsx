@@ -54,7 +54,7 @@ function WorkoutDetails() {
     useEffect(() => {
         dispatch(getWorkoutDetailsThunk(id))
         setIsLoaded(true)
-    }, [dispatch])
+    }, [dispatch, id])
 
     if (!isLoaded || !workout_detail_state) {
         return <div>Loading...</div>

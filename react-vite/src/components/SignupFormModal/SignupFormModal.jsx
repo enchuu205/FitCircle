@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { thunkSignup } from "../../redux/session";
@@ -8,7 +8,6 @@ import "./SignupForm.css";
 function SignupFormModal() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const ulRef = useRef();
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -33,12 +32,6 @@ function SignupFormModal() {
   //   setConfirmPassword('samplepassword')
   //   handleSubmit
   // }
-
-  const closeMenu = (e) => {
-    if (ulRef.current && !ulRef.current.contains(e.target)) {
-      setShowMenu(false);
-    }
-  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();

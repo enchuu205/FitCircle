@@ -1,5 +1,3 @@
-import workoutsReducer from "./workouts";
-
 const GET_ALL_PUBLIC_EXERCISES = 'GET_ALL_PUBLIC_EXERCISES'
 
 const getAllPublicExercises = (public_exercises) => ({
