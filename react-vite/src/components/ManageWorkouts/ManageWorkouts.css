@@ -9,3 +9,12 @@
     width: fit-content;
     margin-right: 15px;
 }
+
+.edit-delete-button {
+    background-color: #202353;
+    color: white;
+    margin: 5px;
+    border-radius: 7px;
+    padding: 5px;
+    width: 100px;
+}

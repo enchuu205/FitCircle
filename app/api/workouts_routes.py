@@ -2,7 +2,7 @@ from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
 
 from sqlalchemy import and_
-from app.models import db, Workouts
+from app.models import db, Workouts, workouts_exercises_join_table
 
 from ..forms.workout_form import WorkoutForm
 
@@ -35,7 +35,8 @@ def get_workout_details(id):
 @workouts_routes.route('/new', methods=['POST'])
 @login_required
 def create_workout():
-    # body = request.get_json()
+    body = request.get_json()
+    # print('----------------->', body)
     workout_form = WorkoutForm()
     workout_form['csrf_token'].data = request.cookies['csrf_token']
 
@@ -51,7 +52,44 @@ def create_workout():
     db.session.add(new_workout)
     db.session.commit()
 
-    return jsonify({'new_workout': new_workout.to_dict()})
+    for public_exercise_id in body.get('public_exercise_arr', []):
+        db.session.execute(workouts_exercises_join_table.insert().values(
+            workout_id=new_workout.id,
+            public_exercise_id=public_exercise_id
+        ))
+    db.session.commit()
+
+    return jsonify(new_workout.to_dict())
+
+# UPDATE A USER'S WORKOUT
+@workouts_routes.route('<int:id>/update', methods=['PUT'])
+@login_required
+def update_workout(id):
+    body = request.get_json()
+    # print('----------------->', body)
+
+    existing_workout = Workouts.query.filter(Workouts.id == id).one()
+
+    existing_workout.title = body['title']
+    existing_workout.duration = body['duration']
+    existing_workout.preview_img = body['preview_img']
+    existing_workout.private = body['private']
+
+    db.session.add(existing_workout)
+    db.session.commit()
+
+    db.session.execute(workouts_exercises_join_table.delete().where(
+        workouts_exercises_join_table.c.workout_id == existing_workout.id
+    ))
+
+    for public_exercise_id in body.get('public_exercise_arr', []):
+        db.session.execute(workouts_exercises_join_table.insert().values(
+            workout_id=existing_workout.id,
+            public_exercise_id=public_exercise_id
+        ))
+    db.session.commit()
+
+    return {'message': 'Updated workout'}
 
 
 # DELETE A WORKOUT THAT THE CURRENT USER OWNS

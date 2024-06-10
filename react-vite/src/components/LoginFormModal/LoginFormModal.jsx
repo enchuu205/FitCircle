@@ -71,7 +71,7 @@ function LoginFormModal() {
         </label>
         {errors.password && <p>{errors.password}</p>}
         <button className="log-in-button button text-change" type="submit">Log In</button>
-        <button className="log-in-button button text-change" onClick={() => logInDemoUser()}>Demo User</button>
+        <button className="log-in-button button text-change demo-user-button" onClick={() => logInDemoUser()}>Demo User</button>
         <OpenModalMenuItem
           itemText="Don't have an account? Sign Up!"
           onItemClick={closeMenu}

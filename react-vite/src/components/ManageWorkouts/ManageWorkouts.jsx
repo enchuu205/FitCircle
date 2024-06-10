@@ -25,15 +25,19 @@ function ManageWorkouts() {
         if (!workoutsArray) return null
         const mappedWorkouts = workoutsArray.map((workout, id) => {
             return (
-                <div className='workout-container' key={id}>
-                    <div onClick={() => navigate(`/workouts/${workout.id}`)}>
-                        <img className='workout-preview-image' src={workout.preview_img ? 'https://res.cloudinary.com/dztk9g8ji/image/upload/v1717899260/5-chest-workouts-for-mass-header-v2-830x467_yxfvwf.jpg' : 'https://res.cloudinary.com/dztk9g8ji/image/upload/v1717899260/5-chest-workouts-for-mass-header-v2-830x467_yxfvwf.jpg'} />
-                        <div>{workout.title}</div>
-                        <div>Duration: {workout.duration} minutes</div>
-                        <div>{workout.private ? 'Hidden ' : 'Shared '}to friends</div>
+                <div>
+                    <div className='workout-container' key={id}>
+                        <div onClick={() => navigate(`/workouts/${workout.id}`)}>
+                            <img className='workout-preview-image' src={workout.preview_img ? 'https://res.cloudinary.com/dztk9g8ji/image/upload/v1717899260/5-chest-workouts-for-mass-header-v2-830x467_yxfvwf.jpg' : 'https://res.cloudinary.com/dztk9g8ji/image/upload/v1717899260/5-chest-workouts-for-mass-header-v2-830x467_yxfvwf.jpg'} />
+                            <div id='workout-text-container'>
+                                <div className='title'>{workout.title}</div>
+                                <div className='workout-time'>Approximately {workout.duration} minutes</div>
+                                <div className='workout-time'>{workout.private ? 'Hidden from ' : 'Shared to '}everyone</div>
+                            </div>
+                        </div>
                     </div>
-                    <button className='button'>Edit</button>
-                    <button className='button' onClick={(e) => deleteWorkout(e, workout.id)}>Delete</button>
+                    <button className='edit-delete-button text-change button' onClick={() => navigate(`/workouts/${workout.id}/edit`)}>Edit</button>
+                    <button className='edit-delete-button text-change button' onClick={(e) => deleteWorkout(e, workout.id)}>Delete</button>
                 </div>
 
             )

@@ -12,6 +12,7 @@
     margin-bottom: 10px;
     width: fit-content;
     margin-right: 15px;
+    border-radius: 20px;
 }
 
 .workout-container:hover {
@@ -21,4 +22,20 @@
 
 .workout-preview-image {
     width: 400px;
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+}
+
+#workout-text-container {
+    padding: 0px 0px 5px 15px;
+}
+
+.title {
+    font-size: larger;
+    font-weight: bold;
+    color: #202353
+}
+
+.workout-time {
+    margin-top: 5px;
 }

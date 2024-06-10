@@ -34,6 +34,10 @@ export const router = createBrowserRouter([
         element: <CreateWorkout />
       },
       {
+        path: '/workouts/:id/edit',
+        element: <CreateWorkout edit={true} />
+      },
+      {
         path: '/workouts/:id',
         element: <WorkoutDetails />
       }
