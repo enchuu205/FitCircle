@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { getFriendsThunk, deleteFriendThunk } from '../redux/friends';
-import { useModal } from "../context/Modal";
+import { getFriendsThunk, deleteFriendThunk } from '../../redux/friends';
+import { useModal } from "../../context/Modal";
 
 import './DeleteFriendModal.css'
 

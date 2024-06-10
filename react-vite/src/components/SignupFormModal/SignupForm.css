@@ -1,5 +1,30 @@
+.sign-up-modal-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
 .vertical-align {
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.sign-up-form>* {
+    margin-top: 10px;
+}
+
+label {
+    padding-right: 10px;
+}
+
+
+.sign-up-button {
+    background-color: #202353;
+    color: white;
+    padding: 5px;
+    border-radius: 10px;
+    width: 100%;
+    margin: 5px;
 }

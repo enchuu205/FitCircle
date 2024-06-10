@@ -1,7 +1,72 @@
+.workout-details-container {
+    margin-left: auto;
+    margin-right: auto;
+    width: 1200px;
+}
+
 .preview-image {
-    width: 400px
+    width: 400px;
+    margin-right: 100px;
+}
+
+.workout-details-main-info {
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    width: 1000px;
+}
+
+.main-info-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+
+}
+
+.complete-workout {
+    background-color: #202353;
+    color: white;
+    border-radius: 10px;
+    padding: 5px;
+    font-weight: bold;
+}
+
+.all-exercises-container {
+    border: black 1px solid;
+    width: 300px;
+}
+
+.exercise-container {
+    display: flex;
+    padding: 10px;
+    align-items: center;
+
+}
+
+.exercise-container:hover {
+    background-color: lightgray;
+    cursor: pointer;
+
 }
 
 .exercise-img {
     width: 100px;
+    margin-right: 20px;
+}
+
+.exercise-name {
+    font-size: large;
+}
+
+.all-exercises-details-container {
+    display: flex;
+    /* justify-content: center; */
+}
+
+.exercise-detail-container {
+    margin-left: 150px;
+}
+
+.exercise-img-detail {
+    width: 400px;
 }

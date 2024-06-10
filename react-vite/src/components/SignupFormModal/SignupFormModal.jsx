@@ -21,18 +21,18 @@ function SignupFormModal() {
   const [errors, setErrors] = useState({});
   const { closeModal } = useModal();
 
-  function setNewSignupUser() {
-    setFirstName('Sample')
-    setLastName('User')
-    setEmail('sample_user@aa.io')
-    setUsername('sample_user')
-    setPhoneNumber('1234567890')
-    setCity('SampleCity')
-    setState('SampleState')
-    setPassword('samplepassword')
-    setConfirmPassword('samplepassword')
-    handleSubmit
-  }
+  // function setNewSignupUser() {
+  //   setFirstName('Sample')
+  //   setLastName('User')
+  //   setEmail('sample_user@aa.io')
+  //   setUsername('sample_user')
+  //   setPhoneNumber('1234567890')
+  //   setCity('SampleCity')
+  //   setState('SampleState')
+  //   setPassword('samplepassword')
+  //   setConfirmPassword('samplepassword')
+  //   handleSubmit
+  // }
 
   const closeMenu = (e) => {
     if (ulRef.current && !ulRef.current.contains(e.target)) {
@@ -43,41 +43,68 @@ function SignupFormModal() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    const errors = {}
+
+    if (password.length < 8) {
+      errors.password = "Password must be at least 8 characters long";
+    }
+    if (username.includes(" ")) {
+      errors.username = "Username cannot contain spaces";
+    }
+    if (username.length < 8) {
+      errors.username = "Username must be at least 8 characters long";
+    } else if (username.length > 40) {
+      errors.username = "Username cannot be longer than 40 characters";
+    }
+    if (firstName.length < 2) {
+      errors.firstName = "First Name must be at least 2 characters long";
+    } else if (firstName.length > 40) {
+      errors.firstName = "First Name cannot be longer than 40 characters";
+    }
+    if (lastName.length < 2) {
+      errors.lastName = "Last Name must be at least 2 characters long";
+    } else if (lastName.length > 40) {
+      errors.lastName = "Last Name cannot be longer than 40 characters";
+    }
+    setErrors(errors);
+
     if (password !== confirmPassword) {
       return setErrors({
         confirmPassword:
           "Confirm Password field must be the same as the Password field",
       });
     }
+    if (Object.keys(errors).length === 0) {
+      const serverResponse = await dispatch(
+        thunkSignup({
+          'first_name': firstName,
+          'last_name': lastName,
+          email,
+          username,
+          'phone_number': phoneNumber,
+          city,
+          state,
+          password,
+        })
+      );
 
-    const serverResponse = await dispatch(
-      thunkSignup({
-        'first_name': firstName,
-        'last_name': lastName,
-        email,
-        username,
-        'phone_number': phoneNumber,
-        city,
-        state,
-        password,
-      })
-    );
-
-    if (serverResponse) {
-      setErrors(serverResponse);
-    } else {
-      closeModal();
-      navigate('/home');
+      if (serverResponse) {
+        setErrors(serverResponse);
+      } else {
+        closeModal();
+        navigate('/home');
+      }
     }
   };
 
   return (
-    <div >
+    <div className="sign-up-modal-container">
       <h1 className='vertical-align'>Sign Up</h1>
+      <hr />
       {errors.server && <p>{errors.server}</p>}
-      <form onSubmit={handleSubmit} className='vertical-align'>
+      <form onSubmit={handleSubmit} className='vertical-align sign-up-form'>
         <label>
-          First Name
+          First Name:
           <input
             type="text"
             value={firstName}
@@ -87,7 +114,7 @@ function SignupFormModal() {
         </label>
         {errors.firstName && <p>{errors.firstName}</p>}
         <label>
-          Last Name
+          Last Name:
           <input
             type="text"
             value={lastName}
@@ -97,7 +124,7 @@ function SignupFormModal() {
         </label>
         {errors.lastName && <p>{errors.lastName}</p>}
         <label>
-          Email
+          Email:
           <input
             type="text"
             value={email}
@@ -107,7 +134,7 @@ function SignupFormModal() {
         </label>
         {errors.email && <p>{errors.email}</p>}
         <label>
-          Username
+          Username:
           <input
             type="text"
             value={username}
@@ -117,7 +144,7 @@ function SignupFormModal() {
         </label>
         {errors.username && <p>{errors.username}</p>}
         <label>
-          Phone Number
+          Phone Number:
           <input
             type="text"
             value={phoneNumber}
@@ -127,7 +154,7 @@ function SignupFormModal() {
         </label>
         {errors.phoneNumber && <p>{errors.phoneNumber}</p>}
         <label>
-          City
+          City:
           <input
             type="text"
             value={city}
@@ -137,7 +164,7 @@ function SignupFormModal() {
         </label>
         {errors.city && <p>{errors.city}</p>}
         <label>
-          State
+          State:
           <input
             type="text"
             value={state}
@@ -147,7 +174,7 @@ function SignupFormModal() {
         </label>
         {errors.state && <p>{errors.state}</p>}
         <label>
-          Password
+          Password:
           <input
             type="password"
             value={password}
@@ -157,7 +184,7 @@ function SignupFormModal() {
         </label>
         {errors.password && <p>{errors.password}</p>}
         <label>
-          Confirm Password
+          Confirm Password:
           <input
             type="password"
             value={confirmPassword}
@@ -166,8 +193,8 @@ function SignupFormModal() {
           />
         </label>
         {errors.confirmPassword && <p>{errors.confirmPassword}</p>}
-        <button type="submit">Sign Up</button>
-        <button onClick={() => setNewSignupUser()}>Sample Sign Up User</button>
+        <button className='sign-up-button button text-change' type="submit">Sign Up</button>
+        {/* <button onClick={() => setNewSignupUser()}>Sample Sign Up User</button> */}
       </form>
     </div>
   );
