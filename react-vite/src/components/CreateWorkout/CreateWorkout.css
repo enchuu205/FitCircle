@@ -3,12 +3,16 @@
     margin-right: 30px;
 }
 
+.main-info>* {
+    margin-bottom: 10px;
+}
+
 .added-exercises-container {
     border: black 1px solid;
 }
 
 .duration {
-    width: 30px;
+    width: 40px;
 }
 
 .grid-exercises {

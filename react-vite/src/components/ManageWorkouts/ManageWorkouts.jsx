@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useModal } from '../../context/Modal';
 
 import DeleteWorkoutModal from '../DeleteWorkoutModal/DeleteWorkoutModal';
-import { getAllWorkoutsThunk, deleteWorkoutThunk } from '../../redux/workouts'
+import { getAllWorkoutsThunk } from '../../redux/workouts'
 
 import './ManageWorkouts.css'
 
@@ -13,7 +13,7 @@ function ManageWorkouts() {
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    const { setModalContent, setOnModalClose } = useModal()
+    const { setModalContent } = useModal()
 
 
     const workouts_state = useSelector((state) => state.workouts)
@@ -58,12 +58,6 @@ function ManageWorkouts() {
             )
         })
         return mappedWorkouts
-    }
-
-    const deleteWorkout = async (e, workout_id) => {
-        e.preventDefault();
-        dispatch(deleteWorkoutThunk(workout_id))
-        setIsLoaded(false)
     }
 
     return (

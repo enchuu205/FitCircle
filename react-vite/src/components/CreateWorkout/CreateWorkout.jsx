@@ -43,7 +43,7 @@ function CreateWorkout({ edit }) {
             setPrivated(workout_details?.private)
             setExerciseArr(workout_details?.public_exercises.map((exercise) => exercise.id))
         }
-    }, [workout_details])
+    }, [workout_details, edit])
 
 
     const handleSubmit = async (e) => {
@@ -91,7 +91,6 @@ function CreateWorkout({ edit }) {
 
     function addedExercises(exercises, exerciseArr) {
         console.log(exercises, exerciseArr)
-        if (exerciseArr?.length == 0) return (<div>Add a workout!</div>)
         const filteredExercises = exercises?.filter((exercise) => exerciseArr?.includes(exercise.id))
         // console.log(filteredExercises)
         const sortedFilteredExercises = filteredExercises?.sort((a, b) => exerciseArr.indexOf(a.id) - exerciseArr.indexOf(b.id))
@@ -143,24 +142,26 @@ function CreateWorkout({ edit }) {
             <form>
                 <div className='workout-details-main-info'>
                     <img className='workout-preview-img' src='https://res.cloudinary.com/dztk9g8ji/image/upload/v1717899260/5-chest-workouts-for-mass-header-v2-830x467_yxfvwf.jpg' alt='Workout Preview Image'></img>
-                    <div>
-
-                        <div>Workout Name:</div>
-                        <input
-                            type="text"
-                            value={title}
-                            onChange={(e) => setTitle(e.target.value)}
-                            required
-                        />
-
-                        <div className='sub-heading'>
+                    <div className='main-info'>
+                        <div>
+                            <div>Workout Name:</div>
+                            <input
+                                type="text"
+                                value={title}
+                                onChange={(e) => setTitle(e.target.value)}
+                                required
+                            />
+                        </div>
+                        <div >
                             About how long does this workout last?
                             <div>
                                 <input
-                                    type="text"
+                                    type="number"
                                     className='duration'
                                     value={duration}
                                     onChange={(e) => setDuration(e.target.value)}
+                                    min={0}
+                                    max={300}
                                     required
                                 />
                                 {` minutes`}</div>
@@ -169,8 +170,8 @@ function CreateWorkout({ edit }) {
                             <div>
                                 Do you want to share this with others?
                             </div>
-                            <input type='radio' name='private' className='button' onClick={() => setPrivated(false)} /><label>Yes</label>
-                            <input type='radio' name='private' className='button' onClick={() => setPrivated(true)} /><label>No</label>
+                            <input type='radio' name='private' className='button' onClick={() => setPrivated(false)} checked={privated === false} /><label>Yes</label>
+                            <input type='radio' name='private' className='button' onClick={() => setPrivated(true)} checked={privated === true} /><label>No</label>
                         </div>
                         <button className='complete-workout button text-change' onClick={handleSubmit}>{edit ? 'Update ' : 'Create '} Workout</button>
                     </div>
@@ -179,9 +180,11 @@ function CreateWorkout({ edit }) {
                 <div className='grid-exercises'>
                     <div className='exercise-list-container'>
                         <div className='heading'>Exercises:</div>
-                        <div className='added-exercises-container'>
-                            <div>{addedExercises(public_exercises, exerciseArr)}</div>
-                        </div>
+                        {(exerciseArr?.length == 0) ? (<div>Add a workout!</div>) :
+                            <div className='added-exercises-container'>
+                                <div>{addedExercises(public_exercises, exerciseArr)}</div>
+                            </div>
+                        }
 
                     </div>
                     <div className='add-exercise-container'>
@@ -190,7 +193,9 @@ function CreateWorkout({ edit }) {
                             <select
                                 value={selectedExercise}
                                 onChange={(e) => setSelectedExercise(e.target.value)}
+                                className='button'
                             >
+                                <option value="">Select an exercise</option>
                                 {allExercisesOptions(public_exercises)}
                             </select>
                         </div>

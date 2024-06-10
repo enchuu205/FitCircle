@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useModal } from '../../context/Modal';
 import DeleteFriendModal from '../DeleteFriendModal';
-import { getFriendsThunk, addFriendThunk, acceptFriendRequestThunk, deleteFriendThunk } from '../../redux/friends'
+import { getFriendsThunk, addFriendThunk, acceptFriendRequestThunk } from '../../redux/friends'
 
 import { IoIosCheckmarkCircle } from "react-icons/io";
 import { MdCancel } from "react-icons/md";
@@ -15,7 +15,7 @@ function Friends() {
     const friends_state = useSelector((state) => state.friends)
     // console.log('this is the friends_state', friends_state)
 
-    const { setModalContent, setOnModalClose } = useModal()
+    const { setModalContent } = useModal()
 
     const [isLoaded, setIsLoaded] = useState(false)
     const [addFriendInput, setAddFriendInput] = useState('')

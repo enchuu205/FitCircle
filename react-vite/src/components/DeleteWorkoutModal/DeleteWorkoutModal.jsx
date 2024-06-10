@@ -1,11 +1,11 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { getAllWorkoutsThunk, deleteWorkoutThunk } from '../../redux/workouts'
 import { useModal } from "../../context/Modal";
 
 import './DeleteWorkoutModal.css'
 
 function DeleteWorkoutModal({ workout }) {
-    const user = useSelector((state) => state.session.user)
+    // const user = useSelector((state) => state.session.user)
     const dispatch = useDispatch()
     const { closeModal } = useModal();
 
