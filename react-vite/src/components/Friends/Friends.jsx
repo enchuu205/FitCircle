@@ -1,7 +1,12 @@
-import { useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import OpenModalButton from "../OpenModalButton";
+import DeleteFriendModal from '../../DeleteFriendModal';
 import { getFriendsThunk, addFriendThunk, acceptFriendRequestThunk, deleteFriendThunk } from '../../redux/friends'
-import { useState } from 'react'
+
+import { IoIosCheckmarkCircle } from "react-icons/io";
+import { MdCancel } from "react-icons/md";
+
 import './Friends.css'
 
 function Friends() {
@@ -33,31 +38,30 @@ function Friends() {
             const mappedFriends = friends.map((friend, id) => {
                 if (accepted)
                     return (
-                        <div key={id}>
-                            <div>{friendProfilePicture(friend)}</div>
-                            <div>{friend.sender.id != user.id ? friend.sender.first_name : friend.receiver.first_name}</div>
-                            <div>{monthAndYear(friend.updated_at)}</div>
-                            <button className='button' onClick={(e) => deleteFriend(e, friend.sender.id != user.id ? friend.sender.id : friend.receiver.id)}>Remove Friend</button>
-                            <hr></hr>
+                        <div key={id} className='friend-container'>
+                            <div className='grid-profile-picture'>{friendProfilePicture(friend)}</div>
+                            <h3 className='grid-friend-name'>{friend.sender.id != user.id ? friend.sender.first_name : friend.receiver.first_name}</h3>
+                            <div className='grid-friends-since'>{monthAndYear(friend.updated_at)}</div>
+                            <MdCancel className='grid-remove-friend remove-friend button' onClick={(e) => deleteFriend(e, friend.sender.id != user.id ? friend.sender.id : friend.receiver.id)} />
                         </div>
                     )
                 else
                     if (friend.sender.id != user.id) {
                         return (
-                            <div key={id}>
-                                <div>{friendProfilePicture(friend)}</div>
-                                <div>{friend.sender.id != user.id ? friend.sender.first_name : friend.receiver.first_name}</div>
-                                <div>wants to be your friend!</div>
-                                <button className='button' onClick={(e) => acceptFriendRequest(e, friend.sender.id)}>Accept Friend Request</button>
-                                <button className='button' onClick={() => alert('will deny the friend request')}>Reject Friend Request</button>
-                                <hr></hr>
+                            <div key={id} className='friend-container'>
+                                <div className='grid-profile-picture'>{friendProfilePicture(friend)}</div>
+                                <h3 className='grid-friend-name'>{friend.sender.id != user.id ? friend.sender.first_name : friend.receiver.first_name}</h3>
+                                <div className='grid-friends-since'>wants to be your friend!</div>
+                                <IoIosCheckmarkCircle className='grid-accept-friend accept-friend button' onClick={(e) => acceptFriendRequest(e, friend.sender.id)} />
+                                <MdCancel className='grid-remove-friend remove-friend button' onClick={(e) => deleteFriend(e, friend.sender.id)} />
                             </div>
                         )
                     } else return null
             })
             return mappedFriends
         } else {
-            return <div>Let&apos;s add a new friend!</div>
+            if (accepted) return <div>Let&apos;s add a new friend!</div>
+            if (!accepted) return <div>No incoming friend requests.</div>
         }
     }
 

@@ -39,7 +39,7 @@ function HomePage() {
         isLoaded && (
             <div className='homepage-container'>
                 <h1>Hey User,</h1>
-                <div>Ready to start your next workout?</div>
+                <div className='sub-heading'>Ready to start your next workout?</div>
                 <h2>Your workouts</h2>
                 <div className='all-workouts-container'>{workoutsMapper(workouts_state.current_user_workouts, false)}</div>
                 {workouts_state.current_user_workouts?.length == 0 && <div>You do not own any workouts </div>}

@@ -92,7 +92,7 @@ export const deleteFriendThunk = (friend_id) => async dispatch => {
     }
 }
 
-const initialState = {};
+const initialState = { all_friends: null, add_friend: null, accept_friend: null, delete_friend: null };
 
 function friendsReducer(state = initialState, action) {
     switch (action.type) {

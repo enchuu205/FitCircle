@@ -8,7 +8,8 @@ from .models import db, User
 from .api.user_routes import user_routes
 from .api.auth_routes import auth_routes
 from .api.friends_routes import friends_routes
-from .api.workouts_route import workouts_routes
+from .api.workouts_routes import workouts_routes
+from .api.public_exercises_routes import public_exercises_routes
 from .seeds import seed_commands
 from .config import Config
 
@@ -32,6 +33,7 @@ app.register_blueprint(user_routes, url_prefix='/api/users')
 app.register_blueprint(auth_routes, url_prefix='/api/auth')
 app.register_blueprint(friends_routes, url_prefix='/api/friends')
 app.register_blueprint(workouts_routes, url_prefix='/api/workouts')
+app.register_blueprint(public_exercises_routes, url_prefix='/api/public_exercises')
 db.init_app(app)
 Migrate(app, db)
 

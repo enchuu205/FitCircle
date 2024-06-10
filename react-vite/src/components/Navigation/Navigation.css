@@ -5,7 +5,7 @@
 #navigation-container {
   display: flex;
   justify-content: space-between;
-  /* background-color: #97c4e2; */
+  /* background-color: #8C94AC; */
 }
 
 #nav-text-container {
@@ -16,7 +16,7 @@
   margin: 0px 20px;
 } */
 
-.profile-picture {
+.user-profile-picture {
   width: 40px;
   height: 40px;
 
@@ -30,7 +30,7 @@
 
 .login-button {
   color: white;
-  background-color: black;
+  background-color: #202353;
   padding-top: 10px;
   padding: 10px;
   height: 20px;
@@ -38,7 +38,7 @@
 }
 
 .user-button {
-  background-color: black;
+  background-color: #202353;
   color: white;
   padding: 7px 13px;
   border-radius: 10px;
@@ -48,6 +48,7 @@
 
 .nav-text {
   margin: 10px 20px;
+  color: #202353;
 }
 
 .nav-text:hover {

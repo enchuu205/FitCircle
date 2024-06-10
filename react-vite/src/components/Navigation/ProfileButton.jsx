@@ -51,7 +51,7 @@ function ProfileButton() {
           onItemClick={closeMenu}
           modalComponent={<LoginFormModal />}
         />}
-      {user && <img onClick={toggleMenu} className='profile-picture button' src={user.profile_picture1 ? user.profile_picture : 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png'} />}
+      {user && <img onClick={toggleMenu} className='user-profile-picture button' src={user.profile_picture1 ? user.profile_picture : 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png'} />}
       {showMenu && (
         <div className={"profile-dropdown"} ref={ulRef}>
           {user && (

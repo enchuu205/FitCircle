@@ -14,7 +14,7 @@ function OpenModalMenuItem({
     if (typeof onItemClick === "function") onItemClick();
   };
   if (itemText === "Don't have an account? Sign Up!") {
-    return (<div onClick={onClick}>{itemText}</div>)
+    return (<div onClick={onClick} className='button'>{itemText}</div>)
   }
 
   return (

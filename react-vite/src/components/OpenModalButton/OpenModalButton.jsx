@@ -1,4 +1,6 @@
 import { useModal } from '../../context/Modal';
+import { MdCancel } from "react-icons/md";
+
 
 function OpenModalButton({
   modalComponent, // component to render inside the modal

@@ -1,5 +1,6 @@
 const GET_ALL_WORKOUTS = 'GET_ALL_WORKOUTS';
 const GET_WORKOUT_DETAILS = 'GET_WORKOUT_DETAILS';
+const CREATE_WORKOUT = 'CREATE_WORKOUT'
 const DELETE_WORKOUT = 'DELETE_WORKOUT'
 
 const getAllWorkouts = (workouts) => ({
@@ -9,6 +10,11 @@ const getAllWorkouts = (workouts) => ({
 
 const getWorkoutDetails = (workout) => ({
     type: GET_WORKOUT_DETAILS,
+    payload: workout
+})
+
+const createWorkout = (workout) => ({
+    type: CREATE_WORKOUT,
     payload: workout
 })
 
@@ -41,6 +47,22 @@ export const getWorkoutDetailsThunk = (workout_id) => async dispatch => {
     }
 }
 
+export const createWorkoutThunk = (new_workout) => async dispatch => {
+    const response = await fetch(`/api/workouts/new`, {
+        method: 'POST',
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(new_workout),
+    })
+    if (response.ok) {
+        const workout = await response.json()
+        dispatch(createWorkout(workout))
+        return workout
+    } else {
+        const errors = await response.json()
+        return errors
+    }
+}
+
 export const deleteWorkoutThunk = (workout_id) => async dispatch => {
     const response = await fetch(`/api/workouts/${workout_id}/delete`, {
         method: 'DELETE',
@@ -66,6 +88,8 @@ function workoutsReducer(state = initialState, action) {
             return { ...state, ...action.payload }
         case GET_WORKOUT_DETAILS:
             return { ...state, ...action.payload }
+        case CREATE_WORKOUT:
+            return { ...state, [action.payload.id]: action.payload }
         case DELETE_WORKOUT:
             return { ...state, ...action.payload }
         default:

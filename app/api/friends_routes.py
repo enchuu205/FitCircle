@@ -39,8 +39,8 @@ def add_friend(username):
     # does not currently check for if the searched user is already a friend/pending friend based on sender_id or receiver_id
     print(username)
     searched_user = User.query.filter(User.username == username).all()
-    if searched_user==False:
-        return ({'error': 'This user does not exist'})
+    if not searched_user:
+        return jsonify({'message': 'This user does not exist'})
     else:
         create_pending_friend = Friends(
             sender_id= current_user.id,
