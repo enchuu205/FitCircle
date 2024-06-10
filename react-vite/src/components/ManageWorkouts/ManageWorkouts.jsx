@@ -2,6 +2,9 @@ import { useEffect, useState } from 'react'
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux'
 
+import { useModal } from '../../context/Modal';
+
+import DeleteWorkoutModal from '../DeleteWorkoutModal/DeleteWorkoutModal';
 import { getAllWorkoutsThunk, deleteWorkoutThunk } from '../../redux/workouts'
 
 import './ManageWorkouts.css'
@@ -10,11 +13,22 @@ function ManageWorkouts() {
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
+    const { setModalContent, setOnModalClose } = useModal()
+
 
     const workouts_state = useSelector((state) => state.workouts)
-    console.log(workouts_state)
+    // console.log(workouts_state)
 
     const [isLoaded, setIsLoaded] = useState(false)
+
+
+    const openDeleteModal = (workout) => {
+        setModalContent(
+            <DeleteWorkoutModal
+                workout={workout}
+            />
+        )
+    }
 
     useEffect(() => {
         dispatch(getAllWorkoutsThunk())
@@ -37,7 +51,8 @@ function ManageWorkouts() {
                         </div>
                     </div>
                     <button className='edit-delete-button text-change button' onClick={() => navigate(`/workouts/${workout.id}/edit`)}>Edit</button>
-                    <button className='edit-delete-button text-change button' onClick={(e) => deleteWorkout(e, workout.id)}>Delete</button>
+                    {/* <button className='edit-delete-button text-change button' onClick={(e) => deleteWorkout(e, workout.id)}>Delete</button> */}
+                    <button id='red' className='edit-delete-button text-change button' onClick={() => openDeleteModal(workout)}>Delete</button>
                 </div>
 
             )

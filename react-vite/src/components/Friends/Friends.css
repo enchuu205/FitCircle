@@ -13,6 +13,14 @@
     grid-template-columns: 40px 240px 40px 40px;
 }
 
+.accepted-friends-list {
+    margin-top: 15px;
+}
+
+.add-friend-container {
+    margin-top: 30px;
+}
+
 .grid-profile-picture {
     display: grid;
     grid-row: 1/4;

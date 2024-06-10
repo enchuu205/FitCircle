@@ -32,29 +32,24 @@ function CreateWorkout({ edit }) {
         setIsLoaded(true)
         if (edit) {
             dispatch(getWorkoutDetailsThunk(id))
+        }
+    }, [dispatch, id, edit])
+
+    useEffect(() => {
+        if (edit && workout_details) {
             setTitle(workout_details?.title)
             setDuration(workout_details?.duration)
             setPreviewImg(workout_details?.preview_img)
             setPrivated(workout_details?.private)
             setExerciseArr(workout_details?.public_exercises.map((exercise) => exercise.id))
-
-            // console.log(workout_details)
-            // setTitle()
         }
-    }, [dispatch])
+    }, [workout_details])
 
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const new_workout = {
-            user_id: user.id,
-            title: title ? title : 'New Workout',
-            duration: duration,
-            preview_img: previewImg,
-            private: privated,
-            public_exercise_arr: exerciseArr
-        }
-        if (edit) {
+
+        if (edit && workout_details) {
             const updated_workout = {
                 id: workout_details.id,
                 user_id: user.id,
@@ -66,7 +61,16 @@ function CreateWorkout({ edit }) {
             }
             const response = await dispatch(updateWorkoutThunk(updated_workout))
             navigate(`/workouts/${response.id}`)
+
         } else {
+            const new_workout = {
+                user_id: user.id,
+                title: title ? title : 'New Workout',
+                duration: duration,
+                preview_img: previewImg,
+                private: privated,
+                public_exercise_arr: exerciseArr
+            }
             const response = await dispatch(createWorkoutThunk(new_workout))
             navigate(`/workouts/${response.id}`)
         }
@@ -86,11 +90,13 @@ function CreateWorkout({ edit }) {
     }
 
     function addedExercises(exercises, exerciseArr) {
-        // console.log(exercises, exerciseArr)
+        console.log(exercises, exerciseArr)
         if (exerciseArr?.length == 0) return (<div>Add a workout!</div>)
         const filteredExercises = exercises?.filter((exercise) => exerciseArr?.includes(exercise.id))
         // console.log(filteredExercises)
-        const mappedAddedExercises = filteredExercises?.map((exercise, id) => {
+        const sortedFilteredExercises = filteredExercises?.sort((a, b) => exerciseArr.indexOf(a.id) - exerciseArr.indexOf(b.id))
+
+        const mappedAddedExercises = sortedFilteredExercises?.map((exercise, id) => {
             return (
                 <div key={id} className='exercise-container'>
                     <img className='exercise-img' src={'https://res.cloudinary.com/dztk9g8ji/image/upload/v1717899260/5-chest-workouts-for-mass-header-v2-830x467_yxfvwf.jpg'} />

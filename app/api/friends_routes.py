@@ -37,10 +37,18 @@ def get_friends():
 @login_required
 def add_friend(username):
     # does not currently check for if the searched user is already a friend/pending friend based on sender_id or receiver_id
-    print(username)
+    # print(username)
     searched_user = User.query.filter(User.username == username).all()
+    if (username == current_user.username):
+        return jsonify({'message': 'You can not add yourself'})
     if not searched_user:
         return jsonify({'message': 'This user does not exist'})
+    # accepted_friend = Friends.query.filter(and_(or_(Friends.sender_id == current_user.id, Friends.receiver_id == current_user.id)), (Friends.sender_id == searched_user.id, Friends.receiver_id == searched_user.id), Friends.pending == False).all()
+    # pending_friend = Friends.query.filter(and_(or_(Friends.sender_id == current_user.id, Friends.receiver_id == current_user.id)), (Friends.sender_id == searched_user.id, Friends.receiver_id == searched_user.id), Friends.pending == True).all()
+    # if accepted_friend :
+    #     return jsonify({'message': 'You are already friends!'})
+    # elif pending_friend:
+    #     return jsonify({'message': 'This user already has a pending friend request from you'})
     else:
         create_pending_friend = Friends(
             sender_id= current_user.id,

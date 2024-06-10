@@ -89,7 +89,12 @@ def update_workout(id):
         ))
     db.session.commit()
 
-    return {'message': 'Updated workout'}
+    return jsonify(
+        {
+        'message': 'Updated workout',
+        'id': existing_workout.id
+        }
+        )
 
 
 # DELETE A WORKOUT THAT THE CURRENT USER OWNS
