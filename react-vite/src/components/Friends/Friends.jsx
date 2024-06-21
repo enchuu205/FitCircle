@@ -138,9 +138,9 @@ function Friends() {
         if (addFriendInput) {
             dispatch(getSearchUsersThunk(addFriendInput))
             setSearchedUsers(searched_users_state)
-            console.log(searchedUsers)
+            // console.log(searchedUsers)
         }
-    }, [addFriendInput])
+    }, [dispatch, addFriendInput, searched_users_state])
 
     function searchedUsersListMapper() {
         if (!addFriendInput) {
