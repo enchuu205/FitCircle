@@ -1,3 +1,8 @@
+.friends-page-container {
+    display: flex;
+}
+
+
 .profile-picture {
     max-width: 40px;
     min-width: 40px;
@@ -26,6 +31,7 @@
 
 .add-friend-container {
     margin-top: 30px;
+    margin-left: 100px;
 }
 
 .grid-profile-picture {
@@ -73,4 +79,41 @@
 .remove-friend {
     color: rgb(185, 34, 34);
     font-size: xx-large;
+}
+
+.new-friends-list-container {
+    border: 1px black solid;
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+}
+
+.search-username {
+    width: 400px;
+    padding: 3px;
+
+}
+
+.search-friend-confirmation {
+    display: flex;
+    align-items: center;
+}
+
+.search-username:hover {
+    background-color: rgb(204, 204, 204);
+}
+
+.extend {
+    width: 400px;
+}
+
+#disabled {
+    background-color: gray;
+}
+
+#disabled:hover {
+    cursor: default;
+    color: white;
 }

@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useModal } from '../../context/Modal';
 import DeleteFriendModal from '../DeleteFriendModal';
-import { getFriendsThunk, addFriendThunk, acceptFriendRequestThunk } from '../../redux/friends'
+import { getFriendsThunk, addFriendThunk, acceptFriendRequestThunk, getSearchUsersThunk } from '../../redux/friends'
 
 import { IoIosCheckmarkCircle } from "react-icons/io";
 import { MdCancel } from "react-icons/md";
@@ -13,6 +13,7 @@ function Friends() {
     const dispatch = useDispatch()
     const user = useSelector((state) => state.session.user)
     const friends_state = useSelector((state) => state.friends)
+    const searched_users_state = useSelector((state) => state.friends?.search_users?.search_users)
     // console.log('this is the friends_state', friends_state)
 
     const { setModalContent } = useModal()
@@ -20,8 +21,14 @@ function Friends() {
     const [isLoaded, setIsLoaded] = useState(false)
     const [addFriendInput, setAddFriendInput] = useState('')
     const [message, setMessage] = useState('')
+    const [searchedUsers, setSearchedUsers] = useState([])
+    const [addFriendUsername, setAddFriendUsername] = useState('')
+    const [addFriendImage, setAddFriendImage] = useState('')
+    const [visible, setVisible] = useState(false)
     // const [showDeleteFriendModal, setShowDeleteFriendModal] = useState(false)
     // const [friendToDelete, setFriendToDelete] = useState('')
+
+
 
     const openDeleteModal = (friend) => {
         setModalContent(
@@ -91,9 +98,14 @@ function Friends() {
 
     const handleFriendRequest = async (e) => {
         e.preventDefault();
-        dispatch(addFriendThunk(addFriendInput))
-        setAddFriendInput('')
-        setIsLoaded(false)
+        if (addFriendUsername) {
+            dispatch(addFriendThunk(addFriendUsername))
+            setAddFriendInput('')
+            setAddFriendUsername('')
+            setAddFriendImage('')
+            setVisible(false)
+            setIsLoaded(false)
+        }
     }
 
     const acceptFriendRequest = async (e, sender_id) => {
@@ -108,11 +120,45 @@ function Friends() {
     //     setIsLoaded(false)
     // }
 
+    function handleClickUsername(username, image) {
+        setAddFriendUsername(username)
+        setAddFriendImage(image)
+        setAddFriendInput('')
+        setMessage('')
+        setVisible(true)
+    }
+
     useEffect(() => {
         dispatch(getFriendsThunk())
         setMessage(friends_state.add_friend?.message)
         setIsLoaded(true)
     }, [dispatch, friends_state.add_friend?.message, isLoaded])
+
+    useEffect(() => {
+        if (addFriendInput) {
+            dispatch(getSearchUsersThunk(addFriendInput))
+            setSearchedUsers(searched_users_state)
+            console.log(searchedUsers)
+        }
+    }, [addFriendInput])
+
+    function searchedUsersListMapper() {
+        if (!addFriendInput) {
+            return (
+                <></>
+            )
+        }
+        const usersList = searchedUsers?.map((user, id) => {
+            return (
+                <div
+                    className='button search-username selected-username'
+                    key={id}
+                    onClick={() => handleClickUsername(user.username, user.profile_picture)}
+                >{user.username}</div>
+            )
+        })
+        return usersList
+    }
 
     if (!isLoaded) {
         return <div>Loading...</div>
@@ -120,11 +166,13 @@ function Friends() {
 
     return (
         isLoaded && (
-            <>
-                <h1>Your Friends</h1>
-                <div className='accepted-friends-list'>{friendsMapper(friends_state.all_friends?.accepted_friends, true)}</div>
-                <h1>Your Requests</h1>
-                <div>{friendsMapper(friends_state.all_friends?.pending_friends, false)}</div>
+            <div className='friends-page-container'>
+                <div>
+                    <h1>Your Friends</h1>
+                    <div className='accepted-friends-list'>{friendsMapper(friends_state.all_friends?.accepted_friends, true)}</div>
+                    <h1>Your Requests</h1>
+                    <div>{friendsMapper(friends_state.all_friends?.pending_friends, false)}</div>
+                </div>
                 <div className='add-friend-container'>
                     <div className='heading'>Add a new friend</div>
                     <form onSubmit={handleFriendRequest} >
@@ -132,8 +180,31 @@ function Friends() {
                             placeholder='Find a new friend'
                             value={addFriendInput}
                             onChange={(e) => setAddFriendInput(e.target.value)}
+                            style={{ marginTop: '5px' }}
                         ></input>
                         <span className='right'>{message}</span>
+                        <div className='new-friends-list-container' style={{ marginTop: '20px' }}>
+                            <div style={{ color: 'gray' }}>
+                                Select a new user to add
+                            </div>
+                            <hr className='extend' />
+                            {searchedUsersListMapper()}
+                        </div>
+
+                        <div
+                            style={{ display: visible ? '' : 'none' }}
+                        >
+                            <div className='search-friend-confirmation' style={{ margin: '10px' }}>
+                                <img className='profile-picture' src={addFriendImage} />
+                                <div style={{ paddingLeft: '15px' }}>Add {addFriendUsername} as a friend?</div>
+                            </div>
+                            <button
+                                className={`button edit-delete-button text-change`}
+                            >
+                                Add Friend
+                            </button>
+                        </div>
+
                     </form >
                 </div>
 
@@ -145,7 +216,7 @@ function Friends() {
                     <div># Workouts, # Exercises</div>
                     <button>Remove Friend</button>
                 </div> */}
-            </>
+            </div>
         )
     )
 }

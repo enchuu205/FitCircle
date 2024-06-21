@@ -1,4 +1,5 @@
 const GET_FRIENDS = 'GET_FRIENDS';
+const GET_SEARCH_USERS = 'GET_SEARCH_USERS'
 const ADD_FRIEND = 'ADD_FRIEND'
 const ACCEPT_FRIEND = 'ACCEPT_FRIEND'
 const DELETE_FRIEND = 'DELETE_FRIEND'
@@ -7,6 +8,11 @@ const getFriends = (friends) => ({
     type: GET_FRIENDS,
     payload: friends
 });
+
+const getSearchUsers = (users) => ({
+    type: GET_SEARCH_USERS,
+    payload: users
+})
 
 const addFriend = (message) => ({
     type: ADD_FRIEND,
@@ -37,6 +43,18 @@ export const getFriendsThunk = () => async dispatch => {
         return errors
     }
 
+}
+
+export const getSearchUsersThunk = (addFriendInput) => async dispatch => {
+    const response = await fetch(`/api/friends/search/${addFriendInput}`)
+    if (response.ok) {
+        const search_users = await response.json();
+        dispatch(getSearchUsers(search_users))
+        return search_users
+    } else {
+        const errors = await response.json()
+        return errors
+    }
 }
 
 export const addFriendThunk = (username) => async dispatch => {
@@ -98,6 +116,8 @@ function friendsReducer(state = initialState, action) {
     switch (action.type) {
         case GET_FRIENDS:
             return { ...state, all_friends: action.payload }
+        case GET_SEARCH_USERS:
+            return { ...state, search_users: action.payload }
         case ADD_FRIEND:
             return { ...state, add_friend: action.payload }
         case ACCEPT_FRIEND:

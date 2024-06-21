@@ -31,6 +31,13 @@ def get_friends():
          'pending_friends': [pending_friend.to_dict() for pending_friend in pending_friends]
          })
 
+# SEARCH USER
+@friends_routes.route('/search/<string:search_input>')
+@login_required
+def search_users(search_input):
+    users_list = User.query.filter(User.username.ilike(f"%{search_input}%")).all()
+    return {'search_users': [user.to_dict() for user in users_list]}
+
 # ADD FRIEND
 # SEND FRIEND REQUEST (CREATE)
 @friends_routes.route('/add-friend/<string:username>', methods=['POST'])
