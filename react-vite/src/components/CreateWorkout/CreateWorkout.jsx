@@ -55,14 +55,12 @@ function CreateWorkout({ edit }) {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
-        // console.log(typeof (parseInt(duration)))
         if (edit && workout_details) {
             const updated_workout = {
                 id: workout_details.id,
                 user_id: user.id,
                 title: title ? title : 'New Workout',
-                duration: parseInt(duration),
+                duration: duration,
                 preview_img: previewImg,
                 private: privated,
                 public_exercise_arr: exerciseArr
@@ -74,11 +72,12 @@ function CreateWorkout({ edit }) {
             const new_workout = {
                 user_id: user.id,
                 title: title ? title : 'New Workout',
-                duration: parseInt(duration),
+                duration: duration,
                 preview_img: previewImg,
                 private: privated,
                 public_exercise_arr: exerciseArr
             }
+            console.log(new_workout)
             const response = await dispatch(createWorkoutThunk(new_workout))
             navigate(`/workouts/${response.id}`)
         }
@@ -144,12 +143,16 @@ function CreateWorkout({ edit }) {
         setExerciseArr(newExerciseArr)
     }
 
+    const handlePrivated = (e) => {
+        setPrivated(e.target.value === 'true')
+    }
+
     return (
         isLoaded &&
         <>
             <form>
                 <div className='workout-details-main-info'>
-                    <img className='workout-preview-img' src={workout_details ? workout_details.preview_img : 'https://res.cloudinary.com/dztk9g8ji/image/upload/v1717899260/5-chest-workouts-for-mass-header-v2-830x467_yxfvwf.jpg'} alt='Workout Preview Image'></img>
+                    <img className='workout-preview-img' src={workout_details?.preview_img ? workout_details.preview_img : 'https://res.cloudinary.com/dztk9g8ji/image/upload/v1717899260/5-chest-workouts-for-mass-header-v2-830x467_yxfvwf.jpg'} alt='Workout Preview Image'></img>
                     <div className='main-info'>
                         <div>
                             <div>Workout Name:</div>
@@ -178,8 +181,22 @@ function CreateWorkout({ edit }) {
                             <div>
                                 Do you want to share this with others?
                             </div>
-                            <input type='radio' name='private' className='button' onClick={() => setPrivated(false)} checked={privated === false} /><label>Yes</label>
-                            <input type='radio' name='private' className='button' onClick={() => setPrivated(true)} checked={privated === true} /><label>No</label>
+                            <input
+                                type='radio'
+                                name='private'
+                                value={false}
+                                className='button'
+                                onChange={handlePrivated}
+                                checked={privated === false} />
+                            <label>Yes</label>
+                            <input
+                                type='radio'
+                                name='private'
+                                value={true}
+                                className='button'
+                                onChange={handlePrivated}
+                                checked={privated === true} />
+                            <label>No</label>
                         </div>
                         <button className='complete-workout button text-change' onClick={handleSubmit}>{edit ? 'Update ' : 'Create '} Workout</button>
                     </div>

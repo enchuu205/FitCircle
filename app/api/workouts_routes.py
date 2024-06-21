@@ -35,23 +35,26 @@ def get_workout_details(id):
 @workouts_routes.route('/new', methods=['POST'])
 @login_required
 def create_workout():
+    # print('-----> Request Headers: ', request.headers)
     body = request.get_json()
-    # print('----------------->', body)
+    print('----------------->', body)
     workout_form = WorkoutForm()
     workout_form['csrf_token'].data = request.cookies['csrf_token']
 
     # Validate the form data
     if not workout_form.validate():
+        print({'errors': workout_form.errors})
         return jsonify({'errors': workout_form.errors}), 400
 
-    # if workout_form.validate_on_submit():
-    new_workout = Workouts(
-        user_id=workout_form.user_id.data,
-        title=workout_form.title.data,
-        duration=workout_form.duration.data,
-        preview_img=workout_form.preview_img.data,
-        private=workout_form.private.data
-    )
+    if workout_form.validate_on_submit():
+
+        new_workout = Workouts(
+            user_id=workout_form.user_id.data,
+            title=workout_form.title.data,
+            duration=workout_form.duration.data,
+            preview_img=workout_form.preview_img.data,
+            private=workout_form.private.data
+        )
 
     db.session.add(new_workout)
     db.session.commit()
