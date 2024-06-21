@@ -11,6 +11,13 @@
     display: grid;
     grid-template-rows: 20px 10px 20px;
     grid-template-columns: 40px 240px 40px 40px;
+
+    border: 1px solid black;
+    width: fit-content;
+    padding: 5px;
+    padding-left: 10px;
+    border-radius: 15px;
+    margin-bottom: 10px;
 }
 
 .accepted-friends-list {

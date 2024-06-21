@@ -50,8 +50,10 @@
 }
 
 .exercise-img {
-    width: 100px;
+    width: 80px;
+    height: 80px;
     margin-right: 20px;
+    object-fit: cover;
 }
 
 .exercise-name {

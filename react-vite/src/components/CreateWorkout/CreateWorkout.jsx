@@ -25,7 +25,7 @@ function CreateWorkout({ edit }) {
     const user = useSelector((state) => state.session.user)
     const public_exercises = useSelector((state) => state.public_exercises.all_public_exercises)
     const workout_details = useSelector((state) => state.workouts.workout_detail)
-    console.log(workout_details)
+    // console.log(workout_details)
 
     useEffect(() => {
         dispatch(getAllPublicExercisesThunk())
@@ -42,6 +42,13 @@ function CreateWorkout({ edit }) {
             setPreviewImg(workout_details?.preview_img)
             setPrivated(workout_details?.private)
             setExerciseArr(workout_details?.public_exercises.map((exercise) => exercise.id))
+        } else {
+            setTitle('')
+            setDuration(0)
+            setPreviewImg('')
+            setPrivated(true)
+            setSelectedExercise('')
+            setExerciseArr([])
         }
     }, [workout_details, edit])
 
@@ -49,12 +56,13 @@ function CreateWorkout({ edit }) {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        // console.log(typeof (parseInt(duration)))
         if (edit && workout_details) {
             const updated_workout = {
                 id: workout_details.id,
                 user_id: user.id,
                 title: title ? title : 'New Workout',
-                duration: duration,
+                duration: parseInt(duration),
                 preview_img: previewImg,
                 private: privated,
                 public_exercise_arr: exerciseArr
@@ -66,7 +74,7 @@ function CreateWorkout({ edit }) {
             const new_workout = {
                 user_id: user.id,
                 title: title ? title : 'New Workout',
-                duration: duration,
+                duration: parseInt(duration),
                 preview_img: previewImg,
                 private: privated,
                 public_exercise_arr: exerciseArr
@@ -90,7 +98,7 @@ function CreateWorkout({ edit }) {
     }
 
     function addedExercises(exercises, exerciseArr) {
-        console.log(exercises, exerciseArr)
+        // console.log(exercises, exerciseArr)
         const filteredExercises = exercises?.filter((exercise) => exerciseArr?.includes(exercise.id))
         // console.log(filteredExercises)
         const sortedFilteredExercises = filteredExercises?.sort((a, b) => exerciseArr.indexOf(a.id) - exerciseArr.indexOf(b.id))
@@ -98,7 +106,7 @@ function CreateWorkout({ edit }) {
         const mappedAddedExercises = sortedFilteredExercises?.map((exercise, id) => {
             return (
                 <div key={id} className='exercise-container'>
-                    <img className='exercise-img' src={'https://res.cloudinary.com/dztk9g8ji/image/upload/v1717899260/5-chest-workouts-for-mass-header-v2-830x467_yxfvwf.jpg'} />
+                    <img className='exercise-img' src={exercise.img} />
                     <div>{exercise.name}</div>
                     {/* <div>{exercise.description}</div> */}
                     <MdCancel className='right remove-friend button' onClick={() => removeFromExerciseArr(exercise.id)} />
@@ -114,7 +122,7 @@ function CreateWorkout({ edit }) {
         // console.log(selectedExerciseId, selectedExercise)
         return (
             <div className='selected-exercise-container'>
-                <img className='exercise-img-detail' src={'https://res.cloudinary.com/dztk9g8ji/image/upload/v1717899260/5-chest-workouts-for-mass-header-v2-830x467_yxfvwf.jpg'} />
+                <img className='exercise-img-detail' src={selectedExercise.img} />
                 <div>
                     <div className='name detail-name'>{selectedExercise.name}</div>
                     <div className='sub-heading detail-description'>{selectedExercise.description}</div>
@@ -141,7 +149,7 @@ function CreateWorkout({ edit }) {
         <>
             <form>
                 <div className='workout-details-main-info'>
-                    <img className='workout-preview-img' src='https://res.cloudinary.com/dztk9g8ji/image/upload/v1717899260/5-chest-workouts-for-mass-header-v2-830x467_yxfvwf.jpg' alt='Workout Preview Image'></img>
+                    <img className='workout-preview-img' src={workout_details ? workout_details.preview_img : 'https://res.cloudinary.com/dztk9g8ji/image/upload/v1717899260/5-chest-workouts-for-mass-header-v2-830x467_yxfvwf.jpg'} alt='Workout Preview Image'></img>
                     <div className='main-info'>
                         <div>
                             <div>Workout Name:</div>
@@ -159,7 +167,7 @@ function CreateWorkout({ edit }) {
                                     type="number"
                                     className='duration'
                                     value={duration}
-                                    onChange={(e) => setDuration(e.target.value)}
+                                    onChange={(e) => setDuration(parseInt(e.target.value))}
                                     min={0}
                                     max={300}
                                     required

@@ -42,7 +42,7 @@ function ManageWorkouts() {
                 <div key={id}>
                     <div className='workout-container'>
                         <div onClick={() => navigate(`/workouts/${workout.id}`)}>
-                            <img className='workout-preview-image' src={workout.preview_img ? 'https://res.cloudinary.com/dztk9g8ji/image/upload/v1717899260/5-chest-workouts-for-mass-header-v2-830x467_yxfvwf.jpg' : 'https://res.cloudinary.com/dztk9g8ji/image/upload/v1717899260/5-chest-workouts-for-mass-header-v2-830x467_yxfvwf.jpg'} />
+                            <img className='workout-preview-image' src={workout.preview_img ? workout.preview_img : 'https://res.cloudinary.com/dztk9g8ji/image/upload/v1717899260/5-chest-workouts-for-mass-header-v2-830x467_yxfvwf.jpg'} />
                             <div id='workout-text-container'>
                                 <div className='title'>{workout.title}</div>
                                 <div className='workout-time'>Approximately {workout.duration} minutes</div>

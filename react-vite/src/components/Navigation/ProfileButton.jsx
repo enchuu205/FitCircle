@@ -58,7 +58,7 @@ function ProfileButton() {
               <div>Hey {user.username}!</div>
               <div onClick={() => alert('Function not yet implemented')} className="button">See profile</div>
               <div>
-                <button onClick={logout} className="button">Log Out</button>
+                <button onClick={logout} className="edit-delete-button button text-change">Log Out</button>
               </div>
             </>
           )}

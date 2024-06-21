@@ -61,7 +61,9 @@
   padding: 10px;
   top: 60px;
   right: 0px;
+  padding-bottom: 0px;
 
+  background-color: white;
   border: black solid 1px;
 }
 

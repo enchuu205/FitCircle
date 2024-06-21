@@ -22,6 +22,8 @@
 
 .workout-preview-image {
     width: 400px;
+    height: 200px;
+    object-fit: cover;
     border-top-right-radius: 20px;
     border-top-left-radius: 20px;
 }

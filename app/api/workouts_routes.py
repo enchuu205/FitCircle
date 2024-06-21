@@ -40,6 +40,10 @@ def create_workout():
     workout_form = WorkoutForm()
     workout_form['csrf_token'].data = request.cookies['csrf_token']
 
+    # Validate the form data
+    if not workout_form.validate():
+        return jsonify({'errors': workout_form.errors}), 400
+
     # if workout_form.validate_on_submit():
     new_workout = Workouts(
         user_id=workout_form.user_id.data,

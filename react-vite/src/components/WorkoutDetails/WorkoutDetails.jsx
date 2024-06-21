@@ -28,7 +28,7 @@ function WorkoutDetails() {
         const mappedExercises = exercises.map((exercise, id) => {
             return (
                 <div key={id} className='exercise-container' onClick={() => setSelectedExercise(exercise)}>
-                    <img className='exercise-img' src={exercise.img ? 'https://res.cloudinary.com/dztk9g8ji/image/upload/v1717899260/5-chest-workouts-for-mass-header-v2-830x467_yxfvwf.jpg' : 'https://res.cloudinary.com/dztk9g8ji/image/upload/v1717899260/5-chest-workouts-for-mass-header-v2-830x467_yxfvwf.jpg'} />
+                    <img className='exercise-img' src={exercise.img ? exercise.img : 'https://res.cloudinary.com/dztk9g8ji/image/upload/v1717899260/5-chest-workouts-for-mass-header-v2-830x467_yxfvwf.jpg'} />
                     <div className='exercise-name'>{exercise.name}</div>
                     {/* <hr /> */}
                 </div>
@@ -42,7 +42,7 @@ function WorkoutDetails() {
         if (Object.keys(exercise).length == 0) return <div></div>
         return (
             <div key={id} className='selected-exercise-container'>
-                <img className='exercise-img-detail' src={exercise.img ? 'https://res.cloudinary.com/dztk9g8ji/image/upload/v1717899260/5-chest-workouts-for-mass-header-v2-830x467_yxfvwf.jpg' : 'https://res.cloudinary.com/dztk9g8ji/image/upload/v1717899260/5-chest-workouts-for-mass-header-v2-830x467_yxfvwf.jpg'} />
+                <img className='exercise-img-detail' src={exercise.img ? exercise.img : 'https://res.cloudinary.com/dztk9g8ji/image/upload/v1717899260/5-chest-workouts-for-mass-header-v2-830x467_yxfvwf.jpg'} />
                 <div>
                     <div className='name detail-name'>{exercise.name}</div>
                     <div className='sub-heading detail-description'>{exercise.description}</div>
@@ -64,7 +64,7 @@ function WorkoutDetails() {
         isLoaded && (
             <div className='workout-details-container'>
                 <div className='workout-details-main-info'>
-                    <img className='preview-image' src={workout_detail_state.preview_img ? 'https://res.cloudinary.com/dztk9g8ji/image/upload/v1717899260/5-chest-workouts-for-mass-header-v2-830x467_yxfvwf.jpg' : 'https://res.cloudinary.com/dztk9g8ji/image/upload/v1717899260/5-chest-workouts-for-mass-header-v2-830x467_yxfvwf.jpg'} />
+                    <img className='preview-image' src={workout_detail_state.preview_img ? workout_detail_state.preview_img : 'https://res.cloudinary.com/dztk9g8ji/image/upload/v1717899260/5-chest-workouts-for-mass-header-v2-830x467_yxfvwf.jpg'} />
                     <div className='main-info-text'>
                         <div>
                             <h2>{workout_detail_state.title}</h2>
