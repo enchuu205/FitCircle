@@ -12,6 +12,7 @@ function WorkoutDetails() {
 
     const [isLoaded, setIsLoaded] = useState(false)
     const [selectedExercise, setSelectedExercise] = useState({})
+    const [countdown, setCountdown] = useState(0)
 
     const workout_detail_state = useSelector((state) => state.workouts.workout_detail)
     // console.log(workout_detail_state)
@@ -51,6 +52,10 @@ function WorkoutDetails() {
         )
     }
 
+    // while (countdown != 0) {
+    //     setCountdown(countdown - 1)
+    // }
+
     useEffect(() => {
         dispatch(getWorkoutDetailsThunk(id))
         setIsLoaded(true)
@@ -87,7 +92,13 @@ function WorkoutDetails() {
                     :
                     <div>There are no exercises in this workout</div>
                 }
-
+                <div>
+                    {countdown}
+                    <button className='button edit-delete-button text-change' type='button' value='30' onClick={() => setCountdown(countdown + 30)}>30</button>
+                    <button className='button edit-delete-button text-change' type='button' value='60' onClick={() => setCountdown(countdown + 60)}>60</button>
+                    <button className='button edit-delete-button text-change' type='button' value='90' onClick={() => setCountdown(countdown + 90)}>90</button>
+                    <button className='button edit-delete-button text-change' type='button' value='120' onClick={() => setCountdown(countdown + 120)}>120</button>
+                </div>
             </div>)
     )
 }
