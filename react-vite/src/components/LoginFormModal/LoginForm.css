@@ -16,6 +16,10 @@
     margin-bottom: 10px;
 }
 
+.login-signup-input {
+    width: 100%;
+}
+
 .log-in-button {
     background-color: #202353;
     color: white;

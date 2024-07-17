@@ -100,6 +100,7 @@ function SignupFormModal() {
           First Name:
           <input
             type="text"
+            className="login-signup-input"
             value={firstName}
             onChange={(e) => setFirstName(e.target.value)}
             required
@@ -110,6 +111,7 @@ function SignupFormModal() {
           Last Name:
           <input
             type="text"
+            className="login-signup-input"
             value={lastName}
             onChange={(e) => setLastName(e.target.value)}
             required
@@ -120,6 +122,7 @@ function SignupFormModal() {
           Email:
           <input
             type="text"
+            className="login-signup-input"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
@@ -130,6 +133,7 @@ function SignupFormModal() {
           Username:
           <input
             type="text"
+            className="login-signup-input"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
             required
@@ -140,6 +144,7 @@ function SignupFormModal() {
           Phone Number:
           <input
             type="text"
+            className="login-signup-input"
             value={phoneNumber}
             onChange={(e) => setPhoneNumber(e.target.value)}
             required
@@ -150,6 +155,7 @@ function SignupFormModal() {
           City:
           <input
             type="text"
+            className="login-signup-input"
             value={city}
             onChange={(e) => setCity(e.target.value)}
             required
@@ -160,6 +166,7 @@ function SignupFormModal() {
           State:
           <input
             type="text"
+            className="login-signup-input"
             value={state}
             onChange={(e) => setState(e.target.value)}
             required
@@ -170,6 +177,7 @@ function SignupFormModal() {
           Password:
           <input
             type="password"
+            className="login-signup-input"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
@@ -180,6 +188,7 @@ function SignupFormModal() {
           Confirm Password:
           <input
             type="password"
+            className="login-signup-input"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
             required

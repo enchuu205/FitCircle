@@ -8,7 +8,7 @@
 .vertical-align {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    /* align-items: center; */
 }
 
 .sign-up-form>* {
@@ -28,3 +28,9 @@ label {
     width: 100%;
     margin: 5px;
 }
+
+.login-signup-input {
+    width: 100%;
+}
+
+/* .sign-up-form>label {} */
