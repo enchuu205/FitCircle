@@ -1,6 +1,10 @@
 # FitCircle
 FitCircle - Community-Based Exercise Assistance App
 
+![FitCircleHomePage]
+
+[FitCircleHomePage]: ./FitCircle%20Home%20Page.png
+
 ![db-schema]
 
 [db-schema]: ./FitCircle%20Schema%20Diagram.png
