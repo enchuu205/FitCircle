@@ -14,7 +14,7 @@ function Navigation() {
       </NavLink>
       <div id='nav-text-container'>
         {user && <div className="nav-text text-change" onClick={() => navigate('/workouts/manage-workouts')}>Manage Workouts</div>}
-        {user && <div className="nav-text text-change" onClick={() => alert('Function not yet implemented')}>Exercises</div>}
+        {/* {user && <div className="nav-text text-change" onClick={() => alert('Function not yet implemented')}>Exercises</div>} */}
         {user && <div className="nav-text text-change" onClick={() => navigate('/friends')}>Friends</div>}
         {user && <button className="user-button button text-change" onClick={() => { navigate('/workouts/create-workout'); location.reload() }}>Create a Workout</button>}
         <ProfileButton user={user} />

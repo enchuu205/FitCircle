@@ -59,6 +59,9 @@ function SignupFormModal() {
     } else if (lastName.length > 40) {
       errors.lastName = "Last Name cannot be longer than 40 characters";
     }
+    if (!email.includes('@')) {
+      errors.email = "Valid email is required"
+    }
     setErrors(errors);
 
     if (password !== confirmPassword) {

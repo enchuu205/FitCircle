@@ -22,7 +22,7 @@ function HomePage() {
     }, [dispatch])
 
     function workoutsMapper(workoutsArray, from_others) {
-        console.log(workoutsArray)
+        // console.log(workoutsArray)
         if (!workoutsArray) return null
         const mappedWorkouts = workoutsArray.map((workout, id) => {
             return (
