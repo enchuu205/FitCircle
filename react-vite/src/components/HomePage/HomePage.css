@@ -4,6 +4,8 @@
 
 .all-workouts-container {
     display: flex;
+    overflow-x: auto;
+    max-width: 100%;
 
 }
 

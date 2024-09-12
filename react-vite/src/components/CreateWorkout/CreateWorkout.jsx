@@ -77,7 +77,7 @@ function CreateWorkout({ edit }) {
                 private: privated,
                 public_exercise_arr: exerciseArr
             }
-            console.log(new_workout)
+            // console.log(new_workout)
             const response = await dispatch(createWorkoutThunk(new_workout))
             navigate(`/workouts/${response.id}`)
         }
